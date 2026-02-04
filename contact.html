@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact • Streetz Ain’t Safe ATL</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="index.html"><img src="assets/logo.jpg" alt="logo"/><span>Streetz Ain’t Safe ATL</span></a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="events.html">Events</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="join.html">Join</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+</header>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <h1 class="h1" style="font-size:40px;margin:0 0 10px;">Contact</h1>
+      <p class="lead muted">This form is front-end only right now (no email sending). We can add that later.</p>
+
+      <div class="panel">
+        <div class="formRow">
+          <div>
+            <label for="name">Name</label>
+            <input class="input" id="name" placeholder="Your name" />
+          </div>
+          <div>
+            <label for="handle">Instagram (optional)</label>
+            <input class="input" id="handle" placeholder="@yourhandle" />
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div>
+          <label for="msg">Message</label>
+          <textarea class="input" id="msg" placeholder="What do you need?"></textarea>
+        </div>
+
+        <div style="height:12px"></div>
+        <button class="btn primary" type="button" onclick="alert('Form is not wired to email yet. We can add it next!')">
+          Send
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footerRow">
+    <span>© <span id="year"></span> Streetz Ain’t Safe ATL</span>
+    <span class="muted">We respond when it’s time.</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
