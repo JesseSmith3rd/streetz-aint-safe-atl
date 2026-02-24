@@ -406,3 +406,15 @@ body.gate{
   .gateBtn{ width:100%; }
   .gateLabel, .gateHint{ text-align:left; }
 }
+
+.gateBtn {
+  min-width: 180px;
+  justify-content: center;
+}
+
+@media (max-width: 520px){
+  .gateBtn{
+    font-size: 14px;
+    padding: 14px 16px;
+  }
+}

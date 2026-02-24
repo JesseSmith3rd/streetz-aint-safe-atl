@@ -28,18 +28,11 @@
         ALL RIDERS WELCOME. RESPECT THE CODE. DETAILS IN THE GROUP.
       </p>
 
-      <div class="gateDivider"></div>
-
-      <h1 class="gateTitle">Enter using password</h1>
-
-      <form class="gateForm" id="gateForm">
-        <label class="gateLabel" for="pw">Enter password</label>
-        <div class="gateRow">
-          <input class="gateInput" id="pw" type="password" placeholder="Password" autocomplete="current-password" />
-          <button class="gateBtn" type="submit">Enter</button>
-        </div>
-        <p class="gateHint" id="gateHint"></p>
-      </form>
+    <div class="gateDivider"></div>
+     <h1 class="gateTitle">Enter Site</h1>
+      <div class="gateRow" style="justify-content:center;">
+     <a class="gateBtn" href="events.html">Enter</a>
+    </div>
 
       <div class="gateLinks">
         <a href="https://groupme.com/join_group/99993469/IJteHsw5" target="_blank" rel="noreferrer">Join GroupMe</a>
@@ -49,28 +42,6 @@
 
       <p class="gateSmall">Powered by Streetz Ain’t Safe ATL</p>
     </div>
-  </main>
-
-  <script>
-    // ⚠️ Static-site “password” is NOT secure (visual gate only).
-    const form = document.getElementById("gateForm");
-    const hint = document.getElementById("gateHint");
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const pw = document.getElementById("pw").value.trim();
-
-      // Change this to whatever the leader wants for quick preview.
-      // Anyone can view-source, so do not use real secrets.
-      const demoPassword = "ATL";
-
-      if (pw.toUpperCase() === demoPassword) {
-        window.location.href = "events.html"; // or your real home page
-      } else {
-        hint.textContent = "Incorrect password.";
-      }
-    });
-  </script>
-
+  </main>  
 </body>
 </html>
