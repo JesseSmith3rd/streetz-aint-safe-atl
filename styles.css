@@ -272,13 +272,20 @@ body.gate{
 }
 
 .overlay{
+<<<<<<< HEAD
   position: fixed;
   inset: 0;
   z-index: 1;              /* overlay above video */
   pointer-events: none;    /* overlay can't block clicks */
   background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.70));
+=======
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,.08),
+    rgba(0,0,0,.18)
+  );
+>>>>>>> founder-preview
 }
-
 .gateWrap{
   position:relative;
   z-index:2;
@@ -404,4 +411,52 @@ body.gate{
   .gateRow{ flex-direction:column; }
   .gateBtn{ width:100%; }
   .gateLabel, .gateHint{ text-align:left; }
+}
+
+.gateBtn {
+  min-width: 180px;
+  justify-content: center;
+}
+
+@media (max-width: 520px){
+  .gateBtn{
+    font-size: 14px;
+    padding: 14px 16px;
+  }
+}
+
+/* ===== Landing page fine-tuning ===== */
+.overlay{
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,.08),
+    rgba(0,0,0,.18)
+  );
+}
+
+.gateCard{
+  width: min(460px, 100%);
+  padding: 16px 14px;
+  background: rgba(0,0,0,.28);
+}
+
+.gateLogo{
+  width: 96px;
+  height: 96px;
+}
+
+.gateBtn{
+  padding: 10px 14px;
+  font-size: 12px;
+}
+
+@media (max-width: 520px){
+  .gateCard{
+    width: min(92vw, 420px);
+    padding: 14px 12px;
+  }
+  .gateLogo{
+    width: 80px;
+    height: 80px;
+  }
 }
