@@ -273,13 +273,12 @@ body.gate{
 }
 
 .overlay{
-  position:fixed;
-  inset:0;
-  z-index:1;
-  background: radial-gradient(900px 420px at 15% 10%, rgba(26,30,90,.45), transparent 70%),
-              linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.72));
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,.08),
+    rgba(0,0,0,.18)
+  );
 }
-
 .gateWrap{
   position:relative;
   z-index:2;
@@ -416,5 +415,41 @@ body.gate{
   .gateBtn{
     font-size: 14px;
     padding: 14px 16px;
+  }
+}
+
+/* ===== Landing page fine-tuning ===== */
+.overlay{
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,.08),
+    rgba(0,0,0,.18)
+  );
+}
+
+.gateCard{
+  width: min(460px, 100%);
+  padding: 16px 14px;
+  background: rgba(0,0,0,.28);
+}
+
+.gateLogo{
+  width: 96px;
+  height: 96px;
+}
+
+.gateBtn{
+  padding: 10px 14px;
+  font-size: 12px;
+}
+
+@media (max-width: 520px){
+  .gateCard{
+    width: min(92vw, 420px);
+    padding: 14px 12px;
+  }
+  .gateLogo{
+    width: 80px;
+    height: 80px;
   }
 }
