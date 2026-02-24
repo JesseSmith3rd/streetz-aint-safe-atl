@@ -460,3 +460,34 @@ body.gate{
     height: 80px;
   }
 }
+
+/* ===== Mobile polish: smaller gate card on phones ===== */
+@media (max-width: 480px){
+  .gateCard{
+    width: 90vw;          /* narrower */
+    padding: 12px 10px;  /* tighter padding */
+    border-radius: 16px;
+  }
+
+  .gateLogo{
+    width: 72px;         /* smaller logo */
+    height: 72px;
+  }
+
+  .gateTitle{
+    font-size: 14px;     /* smaller title */
+    margin: 6px 0 8px;
+  }
+
+  .gateNote{
+    font-size: 10px;     /* tighter copy */
+    line-height: 1.3;
+  }
+
+  .gateBtn{
+    padding: 10px 12px; /* slimmer button */
+    min-width: 120px;
+    font-size: 11px;
+  }
+}
+
