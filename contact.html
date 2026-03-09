@@ -16,7 +16,6 @@
     <a href="merch.html">Merch</a>
     <a href="join.html">Join</a>
     <a href="contact.html">Contact</a>
-    
   </nav>
   <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
 </header>
@@ -25,31 +24,40 @@
   <section class="section">
     <div class="container">
       <h1 class="h1" style="font-size:40px;margin:0 0 10px;">Contact</h1>
-      <p class="lead muted">Add email functionality later</p>
+      <p class="lead muted">Send us a message and we’ll get back to you.</p>
 
       <div class="panel">
-        <div class="formRow">
-          <div>
-            <label for="name">Name</label>
-            <input class="input" id="name" placeholder="Your name" />
+        <form id="contactform">
+          <div class="formRow">
+            <div>
+              <label for="name">Name</label>
+              <input class="input" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input class="input" id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
           </div>
+
+          <div style="height:12px"></div>
+
           <div>
             <label for="handle">Instagram (optional)</label>
-            <input class="input" id="handle" placeholder="@yourhandle" />
+            <input class="input" id="handle" name="instagram" placeholder="@yourhandle" />
           </div>
-        </div>
 
-        <div style="height:12px"></div>
+          <div style="height:12px"></div>
 
-        <div>
-          <label for="msg">Message</label>
-          <textarea class="input" id="msg" placeholder="What do you need?"></textarea>
-        </div>
+          <div>
+            <label for="msg">Message</label>
+            <textarea class="input" id="msg" name="message" placeholder="What do you need?" required></textarea>
+          </div>
 
-        <div style="height:12px"></div>
-        <button class="btn primary" type="button" onclick="alert('Form is not wired to email yet. We can add it next!')">
-          Send
-        </button>
+          <div style="height:12px"></div>
+          <button class="btn primary" type="submit">
+            Send
+          </button>
+        </form>
       </div>
     </div>
   </section>
@@ -63,5 +71,29 @@
 </footer>
 
 <script src="script.js"></script>
+
+<script>
+    const form = document.getElementById("contactform");
+    form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    const response = await fetch("https://formspree.io/f/mjgagdlo", {
+    method: "POST",
+    body: data,
+    headers: {
+      'Accept': 'application/json'
+    }
+  });
+
+  if (response.ok) {
+    alert("Message sent successfully!");
+    form.reset();
+  } else {
+    alert("Something went wrong. Please try again.");
+  }
+});
+</script>
 </body>
 </html>
