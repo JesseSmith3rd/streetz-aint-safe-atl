@@ -484,3 +484,35 @@ body.gate{
   }
 }
 
+/* ===== Mobile landing page adjustments ===== */
+@media (max-width: 480px){
+
+  .gateCard{
+    width: 78vw;              /* smaller card width */
+    padding: 10px 8px;        /* tighter padding */
+    background: rgba(0,0,0,.15); /* lighter card so video shows */
+    border-radius: 14px;
+  }
+
+  .gateLogo{
+    width: 60px;              /* smaller logo */
+    height: 60px;
+  }
+
+  .gateTitle{
+    font-size: 13px;
+    margin: 6px 0;
+  }
+
+  .gateNote{
+    font-size: 9px;
+    line-height: 1.25;
+  }
+
+  .gateBtn{
+    padding: 8px 10px;
+    font-size: 10px;
+    min-width: 100px;
+  }
+
+}
