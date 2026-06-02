@@ -38,14 +38,22 @@
     <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
   </header>
 
-  <!-- Hero Container (Full-screen background video, no bars on the sides) -->
+  <!-- Hero Container (Blurred ambient background + uncropped centered video) -->
   <div class="hero-container">
-    <video autoplay muted loop playsinline class="hero-video">
+    <!-- Layer 1: Ambient Blurred Background (Fills entire screen, no side bars) -->
+    <video autoplay muted loop playsinline class="hero-video-blur">
       <source src="assets/intro.mp4" type="video/mp4" />
     </video>
     
+    <!-- Layer 2: Main Video (Crisp, fully zoomed-out, shows all people) -->
+    <video autoplay muted loop playsinline class="hero-video-main">
+      <source src="assets/intro.mp4" type="video/mp4" />
+    </video>
+    
+    <!-- Layer 3: Contrast Overlay -->
     <div class="hero-overlay"></div>
     
+    <!-- Layer 4: Text Content & Enter Action -->
     <div class="hero-content">
       <!-- Centered Logo inside Hero -->
       <img src="assets/logo.jpg" style="width: 100px; height: 100px; border: 1px solid var(--border-color); margin-bottom: 24px;" alt="Streetz X Safe ATL Logo" />

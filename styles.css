@@ -312,22 +312,33 @@ textarea.input {
   align-items: center;
 }
 
-.hero-video {
+.hero-video-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* covers the entire screen, no side bars */
+  filter: blur(28px) brightness(0.35); /* blur and darken */
+  z-index: 1;
+  transform: scale(1.05); /* slightly scale up to prevent blurred borders showing */
+}
+
+.hero-video-main {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: contain; /* displays the entire video, no crop */
-  background-color: #000000;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65); /* dark screen overlay to ensure text contrast */
-  z-index: 2;
+  background: rgba(0, 0, 0, 0.35); /* screen tint overlay */
+  z-index: 3;
 }
 
 .hero-content {
