@@ -1,40 +1,40 @@
 [
   {
-    "id": "long-sleeve-hoodie",
-    "name": "LONG SLEEVE HOODIE",
+    "id": "long-sleeve-hoodies-high-visibility-reflective-design",
+    "name": "LONG SLEEVE HOODIES",
     "subname": "High-Visibility Reflective Design",
     "priceDisplay": "$65.00",
-    "image": "assets/merch-hoodie.jpg",
+    "image": "assets/merch-hoodie.png",
     "description": "Stay visible, stay safe. High-quality reflective graphics on premium heavyweight fabric. Designed for riders who refuse to blend in.",
     "variants": [
-      { "size": "XS", "price": 65.00, "variantId": "REPLACE_WITH_XS_HOODIE_VARIANT_ID" },
-      { "size": "S", "price": 65.00, "variantId": "REPLACE_WITH_S_HOODIE_VARIANT_ID" },
-      { "size": "M", "price": 65.00, "variantId": "REPLACE_WITH_M_HOODIE_VARIANT_ID" },
-      { "size": "L", "price": 65.00, "variantId": "REPLACE_WITH_L_HOODIE_VARIANT_ID" },
-      { "size": "XL", "price": 65.00, "variantId": "REPLACE_WITH_XL_HOODIE_VARIANT_ID" },
-      { "size": "2XL", "price": 65.00, "variantId": "REPLACE_WITH_2XL_HOODIE_VARIANT_ID" },
-      { "size": "3XL", "price": 65.00, "variantId": "REPLACE_WITH_3XL_HOODIE_VARIANT_ID" },
-      { "size": "4XL", "price": 65.00, "variantId": "REPLACE_WITH_4XL_HOODIE_VARIANT_ID" },
-      { "size": "5XL", "price": 65.00, "variantId": "REPLACE_WITH_5XL_HOODIE_VARIANT_ID" }
+      { "size": "XS", "price": 65.00, "variantId": "48455754186967" },
+      { "size": "S", "price": 65.00, "variantId": "48455754186967" },
+      { "size": "M", "price": 65.00, "variantId": "48455754186967" },
+      { "size": "L", "price": 65.00, "variantId": "48455754186967" },
+      { "size": "XL", "price": 65.00, "variantId": "48455754186967" },
+      { "size": "2XL", "price": 65.00, "variantId": "48455754186967" },
+      { "size": "3XL", "price": 65.00, "variantId": "48455754186967" },
+      { "size": "4XL", "price": 65.00, "variantId": "48455754186967" },
+      { "size": "5XL", "price": 65.00, "variantId": "48455754186967" }
     ]
   },
   {
-    "id": "short-sleeve-tshirt",
-    "name": "SHORT SLEEVE T-SHIRT",
+    "id": "short-sleeve-t-shirts-high-visibility-reflective-design",
+    "name": "SHORT SLEEVE T-SHIRTS",
     "subname": "High-Visibility Reflective Design",
     "priceDisplay": "$35.00 - $40.00",
-    "image": "assets/merch-tee.jpg",
+    "image": "assets/merch-tee.png",
     "description": "High-visibility reflective print on premium soft cotton t-shirt. Ideal for layering or warm weather rides.",
     "variants": [
-      { "size": "XS", "price": 35.00, "variantId": "REPLACE_WITH_XS_TEE_VARIANT_ID" },
-      { "size": "S", "price": 35.00, "variantId": "REPLACE_WITH_S_TEE_VARIANT_ID" },
-      { "size": "M", "price": 35.00, "variantId": "REPLACE_WITH_M_TEE_VARIANT_ID" },
-      { "size": "L", "price": 35.00, "variantId": "REPLACE_WITH_L_TEE_VARIANT_ID" },
-      { "size": "XL", "price": 35.00, "variantId": "REPLACE_WITH_XL_TEE_VARIANT_ID" },
-      { "size": "2XL", "price": 35.00, "variantId": "REPLACE_WITH_2XL_TEE_VARIANT_ID" },
-      { "size": "3XL", "price": 40.00, "variantId": "REPLACE_WITH_3XL_TEE_VARIANT_ID" },
-      { "size": "4XL", "price": 40.00, "variantId": "REPLACE_WITH_4XL_TEE_VARIANT_ID" },
-      { "size": "5XL", "price": 40.00, "variantId": "REPLACE_WITH_5XL_TEE_VARIANT_ID" }
+      { "size": "XS", "price": 35.00, "variantId": "48455728300247" },
+      { "size": "S", "price": 35.00, "variantId": "48455728267479" },
+      { "size": "M", "price": 35.00, "variantId": "48455728234711" },
+      { "size": "L", "price": 35.00, "variantId": "48455728201943" },
+      { "size": "XL", "price": 35.00, "variantId": "48455728333015" },
+      { "size": "2XL", "price": 35.00, "variantId": "48455728398551" },
+      { "size": "3XL", "price": 40.00, "variantId": "48455728431319" },
+      { "size": "4XL", "price": 35.00, "variantId": "48455728365783" },
+      { "size": "5XL", "price": 40.00, "variantId": "48455728464087" }
     ]
   }
 ]
