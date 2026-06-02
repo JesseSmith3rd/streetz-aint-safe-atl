@@ -300,104 +300,60 @@ textarea.input {
 }
 
 /* ==========================================================================
-   GATEWAY / SPLASH PAGE (index.html)
+   GATEWAY / SPLASH HERO PAGE (index.html)
    ========================================================================== */
-body.gate {
-  overflow: hidden;
-  background-color: #000000;
-}
-
-/* Background video that FITS page entirely and is not cropped */
-.video-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
+.hero-container {
+  position: relative;
+  width: 100%;
   height: 100vh;
-  z-index: 1;
-  background-color: #000000;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
-.video-container video {
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* USER REQUEST: fits the page, not zoomed/cropped */
+  object-fit: cover; /* covers the entire screen, no side bars */
+  z-index: 1;
 }
 
-.gateOverlay {
-  position: fixed;
+.hero-overlay {
+  position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.65); /* dark screen overlay to ensure text contrast */
   z-index: 2;
 }
 
-.gateWrap {
-  position: fixed;
-  inset: 0;
+.hero-content {
+  position: relative;
   z-index: 3;
+  text-align: center;
+  max-width: 600px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 24px;
+  justify-content: center;
 }
 
-.gateCard {
-  width: min(460px, 100%);
-  background-color: rgba(0, 0, 0, 0.85);
-  border: 1px solid var(--border-color);
-  padding: 48px 32px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-}
-
-.gateLogo {
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 24px;
-  border: 1px solid var(--border-color);
-}
-
-.gateTitle {
-  font-size: 24px;
-  letter-spacing: 0.15em;
-  margin-bottom: 8px;
-}
-
-.gateSub {
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 24px;
-}
-
-.gateBtn {
+.transparent-header {
+  position: absolute;
+  top: 33px; /* sits below the announcement bar */
+  left: 0;
   width: 100%;
-  margin-bottom: 32px;
+  z-index: 10;
+  background-color: transparent !important;
+  border-bottom: none !important;
 }
 
-.gateDivider {
-  height: 1px;
-  background-color: var(--border-color);
-  margin: 24px 0;
-}
-
+/* Form layout inside hero */
 .gateFormWrap {
   text-align: left;
-}
-
-.gateFormWrap h3 {
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  margin-bottom: 16px;
-  text-align: center;
-  color: var(--text-muted);
 }
 
 .gateForm {
@@ -411,24 +367,6 @@ body.gate {
 
 .gateForm .btn {
   padding: 14px 20px;
-}
-
-.gateSocials {
-  margin-top: 32px;
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-
-.gateSocialLink img {
-  width: 20px;
-  height: 20px;
-  filter: invert(1);
-  transition: opacity 0.2s ease;
-}
-
-.gateSocialLink:hover img {
-  opacity: 0.7;
 }
 
 /* ==========================================================================

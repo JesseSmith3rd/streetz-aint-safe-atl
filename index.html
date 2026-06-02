@@ -3,59 +3,72 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Streetz X Safe ATL • Enter Site</title>
+  <title>Streetz X Safe ATL</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="gate">
+<body>
 
-  <!-- Background Video (Fits the page, centered, no zooming/cropping) -->
-  <div class="video-container">
-    <video autoplay muted loop playsinline>
-      <source src="assets/intro.mp4" type="video/mp4" />
-      <!-- Fallback color if video doesn't play -->
-    </video>
+  <!-- 🔥 Announcement Bar -->
+  <div class="announcement">
+    🔥 New Merch Live • High-Visibility Reflective Ride Gear • Streetz Ain’t Safe ATL
   </div>
 
-  <!-- Screen Darkener Overlay for Typography Readability -->
-  <div class="gateOverlay"></div>
+  <!-- Floating Instagram Icon -->
+  <a href="https://www.instagram.com/streetzaintsafeatl" target="_blank" rel="noopener noreferrer" class="igFloat" title="Follow on Instagram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+    </svg>
+  </a>
 
-  <!-- Splash Screen Content Card -->
-  <div class="gateWrap">
-    <div class="gateCard">
-      <!-- Logo -->
-      <img src="assets/logo.jpg" class="gateLogo" alt="Streetz X Safe ATL Logo" />
+  <!-- 🔥 Transparent Navigation Header (Overlaid on Video) -->
+  <header class="topbar transparent-header">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.jpg" alt="Streetz X Safe Logo" />
+      <span>Streetz X Safe</span>
+    </a>
+
+    <nav class="nav">
+      <a href="merch.html">Shop</a>
+      <a href="events.html">Events</a>
+      <a href="join.html">Join</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </header>
+
+  <!-- Hero Container (Full-screen background video, no bars on the sides) -->
+  <div class="hero-container">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="assets/intro.mp4" type="video/mp4" />
+    </video>
+    
+    <div class="hero-overlay"></div>
+    
+    <div class="hero-content">
+      <!-- Centered Logo inside Hero -->
+      <img src="assets/logo.jpg" style="width: 100px; height: 100px; border: 1px solid var(--border-color); margin-bottom: 24px;" alt="Streetz X Safe ATL Logo" />
       
-      <!-- Title -->
-      <h1 class="gateTitle">Streetz X Safe</h1>
-      <p class="gateSub">Stay Safe • Ride Hard • Rep the Movement</p>
+      <h1 style="font-size: clamp(32px, 6vw, 64px); letter-spacing: 0.15em; margin-bottom: 12px;">Streetz X Safe</h1>
+      <p style="font-family: var(--font-body); font-size: clamp(12px, 2.5vw, 15px); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 32px;">
+        Stay Safe • Ride Hard • Rep the Movement
+      </p>
       
-      <!-- Enter Site Button -->
-      <a href="merch.html" class="btn primary gateBtn">Enter Site</a>
-      
-      <div class="gateDivider"></div>
-      
-      <!-- Newsletter / Group Chat Signup -->
-      <div class="gateFormWrap">
-        <h3>Early Access to Drops & Updates</h3>
+      <!-- Enter Shop Button -->
+      <a href="merch.html" class="btn primary" style="min-width: 200px; font-size: 13px;">Enter Shop</a>
+
+      <!-- Drop Notifications Email Form -->
+      <div class="gateFormWrap" style="margin-top: 48px; width: 100%; max-width: 400px;">
+        <h3 style="font-size: 11px; letter-spacing: 0.1em; margin-bottom: 12px; text-align: center; color: var(--text-muted);">Get updates on new drops</h3>
         <form class="gateForm" onsubmit="alert('Subscribed! Stay safe on the road.'); this.reset(); return false;">
-          <input type="email" placeholder="ENTER YOUR EMAIL" class="input" required />
-          <button type="submit" class="btn">JOIN</button>
+          <input type="email" placeholder="ENTER YOUR EMAIL" class="input" required style="background: rgba(0,0,0,0.6);" />
+          <button type="submit" class="btn primary" style="border: 1px solid #fff;">JOIN</button>
         </form>
-      </div>
-      
-      <!-- Social Connections -->
-      <div class="gateSocials">
-        <a href="https://www.instagram.com/streetzaintsafeatl" target="_blank" rel="noopener noreferrer" class="gateSocialLink" title="Follow on Instagram">
-          <!-- Inline High-Quality SVG Instagram Icon -->
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
-        </a>
       </div>
     </div>
   </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
