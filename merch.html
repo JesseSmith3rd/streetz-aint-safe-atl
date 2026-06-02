@@ -2,99 +2,183 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Merch • Streetz Ain’t Safe ATL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop • Streetz X Safe ATL</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<header class="topbar">
-  <a class="brand" href="index.html"><img src="assets/logo.jpg" alt="logo"/><span>Streetz Ain’t Safe ATL</span></a>
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="events.html">Events</a>  
-    <a href="merch.html">Merch</a>
-    <a href="join.html">Join</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
-</header>
-
-<main>
-  <section class="section">
-    <div class="container">
-      <h1 class="h1" style="font-size:40px;margin:0 0 10px;">Merch</h1>
-      <p class="lead muted">
-        Official Streetz Ain’t Safe ATL gear. Support the movement.
-      </p>
-
-      <div class="panel">
-        <h2 class="h2">Featured Drops</h2>
-
-        <div class="grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
-          <!-- ITEM 1 -->
-          <div class="card">
-            <h3>Logo Tee</h3>
-            <p class="muted">Front chest logo • Black/Navy</p>
-            <div class="photo" style="height:200px;margin-top:10px;">
-              <span>Add: assets/merch-tee.jpg</span>
-              <!-- Later: <img src="assets/merch-tee.jpg" alt="Logo Tee"> -->
-            </div>
-            <div style="height:12px"></div>
-            <a class="btn primary full" href="https://YOUR-CHECKOUT-LINK-HERE" target="_blank" rel="noreferrer">
-              Buy Now
-            </a>
-            <p class="small muted" style="margin-top:10px;">Ships in 5–10 business days (edit as needed).</p>
-          </div>
-
-          <!-- ITEM 2 -->
-          <div class="card">
-            <h3>Hoodie</h3>
-            <p class="muted">Heavyweight • Cold weather ready</p>
-            <div class="photo" style="height:200px;margin-top:10px;">
-              <span>Add: assets/merch-hoodie.jpg</span>
-            </div>
-            <div style="height:12px"></div>
-            <a class="btn primary full" href="https://YOUR-CHECKOUT-LINK-HERE" target="_blank" rel="noreferrer">
-              Buy Now
-            </a>
-            <p class="small muted" style="margin-top:10px;">Sizes S–3XL (edit as needed).</p>
-          </div>
-
-          <!-- ITEM 3 -->
-          <div class="card">
-            <h3>Sticker Pack</h3>
-            <p class="muted">Helmet • Bike • Laptop</p>
-            <div class="photo" style="height:200px;margin-top:10px;">
-              <span>Add: assets/merch-stickers.jpg</span>
-            </div>
-            <div style="height:12px"></div>
-            <a class="btn primary full" href="https://YOUR-CHECKOUT-LINK-HERE" target="_blank" rel="noreferrer">
-              Buy Now
-            </a>
-            <p class="small muted" style="margin-top:10px;">Weatherproof vinyl (edit as needed).</p>
-          </div>
-        </div>
-
-        <div class="panel" style="margin-top:16px;">
-          <h2 class="h2">Merch Notes</h2>
-          <p class="muted" style="margin:0;">
-            After checkout, you’ll receive confirmation by email. For issues, hit the Contact page.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="container footerRow">
-    <span>© <span id="year"></span> Streetz Ain’t Safe ATL</span>
-    <span class="muted">Official Merch</span>
+  <!-- 🔥 Announcement Bar -->
+  <div class="announcement">
+    🔥 New Merch Live • High-Visibility Reflective Ride Gear • Streetz Ain’t Safe ATL
   </div>
-</footer>
 
-<script src="script.js"></script>
+  <!-- Floating Instagram Icon -->
+  <a href="https://www.instagram.com/streetzaintsafeatl" target="_blank" rel="noopener noreferrer" class="igFloat" title="Follow on Instagram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+    </svg>
+  </a>
+
+  <!-- 🔥 Navigation Header -->
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.jpg" alt="Streetz X Safe Logo" />
+      <span>Streetz X Safe</span>
+    </a>
+
+    <nav class="nav">
+      <a href="merch.html" class="active">Shop</a>
+      <a href="events.html">Events</a>
+      <a href="join.html">Join</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="page-title-section">
+      <h1>Official Gear</h1>
+      <p>High-visibility reflective design. Built to keep you safe on the street while representing the movement.</p>
+    </section>
+
+    <!-- Product Grid Container (Populated via JS) -->
+    <section class="section" style="padding-top: 0;">
+      <div class="product-grid" id="productGrid">
+        <!-- Products will load dynamically here -->
+        <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">
+          Loading official drops...
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 🔥 Footer -->
+  <footer class="footer">
+    <div class="container footerRow">
+      <span>© <span id="year"></span> Streetz X Safe ATL</span>
+      <span class="muted">Bypassing the noise. Ride Safe. Rep the movement.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Fetch and populate merchandise from products.json
+    async function loadMerch() {
+      const grid = document.getElementById("productGrid");
+      try {
+        const response = await fetch("products.json");
+        if (!response.ok) throw new Error("Failed to load products.json");
+        const products = await response.ok ? await response.json() : [];
+        
+        if (products.length === 0) {
+          grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted);">No products found.</div>`;
+          return;
+        }
+
+        grid.innerHTML = ""; // Clear loader
+        
+        products.forEach(product => {
+          const card = document.createElement("div");
+          card.className = "product-card";
+          card.id = `product-${product.id}`;
+          
+          // Default selection is M (Medium) or the first variant in the array
+          let defaultIndex = product.variants.findIndex(v => v.size === "M");
+          if (defaultIndex === -1) defaultIndex = 0;
+          const initialVariant = product.variants[defaultIndex];
+
+          // Determine checkout URL link behavior (handling placeholders vs real variant IDs)
+          const getCheckoutLink = (varId) => {
+            if (varId.startsWith("REPLACE_WITH")) {
+              // Fallback to store products link or root if they haven't filled it in yet
+              return `https://streetz-aint-safe.myshopify.com/products/${product.id}`;
+            }
+            return `https://streetz-aint-safe.myshopify.com/cart/${varId}:1`;
+          };
+          
+          const defaultCheckoutUrl = getCheckoutLink(initialVariant.variantId);
+          
+          // Generate size selector buttons
+          let sizeSelectorHTML = "";
+          product.variants.forEach((v, index) => {
+            const isSelected = index === defaultIndex ? "selected" : "";
+            sizeSelectorHTML += `
+              <button 
+                type="button" 
+                class="size-option-btn ${isSelected}" 
+                data-variant-id="${v.variantId}" 
+                data-price="$${v.price.toFixed(2)}"
+                onclick="selectSize('${product.id}', this)"
+              >${v.size}</button>
+            `;
+          });
+
+          card.innerHTML = `
+            <div class="product-photo-wrap">
+              <img src="${product.image}" alt="${product.name}" onerror="this.src='https://placehold.co/600x800/111/fff?text=${encodeURIComponent(product.name)}'" />
+            </div>
+            
+            <div class="product-details">
+              <span class="product-subname">${product.subname}</span>
+              <h3>${product.name}</h3>
+              <p class="product-desc">${product.description}</p>
+              <div class="product-price" id="price-${product.id}">$${initialVariant.price.toFixed(2)}</div>
+            </div>
+
+            <div class="product-options-row">
+              <label>Select Size</label>
+              <div class="size-selector-wrap">
+                ${sizeSelectorHTML}
+              </div>
+            </div>
+
+            <a href="${defaultCheckoutUrl}" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn primary full" 
+               id="buy-btn-${product.id}">
+              Buy on Shopify
+            </a>
+          `;
+          
+          grid.appendChild(card);
+        });
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--accent-red);">Unable to load products. Check console for error details.</div>`;
+      }
+    }
+
+    // Interactive size picker and pricing logic
+    function selectSize(productId, buttonElement) {
+      const parentWrap = buttonElement.parentElement;
+      
+      // Toggle selector classes
+      parentWrap.querySelectorAll(".size-option-btn").forEach(btn => btn.classList.remove("selected"));
+      buttonElement.classList.add("selected");
+      
+      // Get price and variant ID from clicked option
+      const newPrice = buttonElement.getAttribute("data-price");
+      const variantId = buttonElement.getAttribute("data-variant-id");
+      
+      // Update price display
+      document.getElementById(`price-${productId}`).textContent = newPrice;
+      
+      // Update checkout URL
+      const buyBtn = document.getElementById(`buy-btn-${productId}`);
+      if (variantId.startsWith("REPLACE_WITH")) {
+        buyBtn.href = `https://streetz-aint-safe.myshopify.com/products/${productId}`;
+      } else {
+        buyBtn.href = `https://streetz-aint-safe.myshopify.com/cart/${variantId}:1`;
+      }
+    }
+
+    // Initialize layout
+    document.addEventListener("DOMContentLoaded", loadMerch);
+  </script>
 </body>
 </html>

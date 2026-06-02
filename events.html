@@ -3,86 +3,144 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Events • Streetz Ain’t Safe ATL</title>
+  <title>Events • Streetz X Safe ATL</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<header class="topbar">
-  <a class="brand" href="index.html"><img src="assets/logo.jpg" alt="logo"/><span>Streetz Ain’t Safe ATL</span></a>
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="events.html">Events</a>
-    <a href="merch.html">Merch</a>
-    <a href="join.html">Join</a>
-    <a href="contact.html">Contact</a>   
+  <!-- 🔥 Announcement Bar -->
+  <div class="announcement">
+    🔥 New Merch Live • High-Visibility Reflective Ride Gear • Streetz Ain’t Safe ATL
+  </div>
 
-  </nav>
-  <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
-</header>
+  <!-- Floating Instagram Icon -->
+  <a href="https://www.instagram.com/streetzaintsafeatl" target="_blank" rel="noopener noreferrer" class="igFloat" title="Follow on Instagram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+    </svg>
+  </a>
 
-<main>
-  <section class="section">
-    <div class="container">
-      <h1 class="h1" style="font-size:40px;margin:0 0 10px;">Events</h1>
-      <p class="lead muted">Public schedule. Exact meetup details can stay inside the group chat.</p>
+  <!-- 🔥 Navigation Header -->
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.jpg" alt="Streetz X Safe Logo" />
+      <span>Streetz X Safe</span>
+    </a>
 
+    <nav class="nav">
+      <a href="merch.html">Shop</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="join.html">Join</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="page-title-section">
+      <h1>Ride Schedule</h1>
+      <p>Official group rides, routes, and meetups. KSU details are finalized in the private chat.</p>
+    </section>
+
+    <!-- Events Grid Section -->
+    <section class="section" style="padding-top: 0;">
       <div class="panel">
-        <h2 class="h2">Upcoming</h2>
-        <table class="table" aria-label="Upcoming events">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Event</th>
-              <th>Meet Area</th>
-              <th>KSU</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>TBD</td>
-              <td>Night Run</td>
-              <td>Atlanta</td>
-              <td>TBD</td>
-              <td>Route + rules posted in GroupMe</td>
-            </tr>
-            <tr>
-              <td>TBD</td>
-              <td>Weekend Route Ride</td>
-              <td>Metro ATL</td>
-              <td>TBD</td>
-              <td>Fuel up early</td>
-            </tr>
-            <tr>
-              <td>TBD</td>
-              <td>Bike Wash + Link Up</td>
-              <td>TBD</td>
-              <td>—</td>
-              <td>Clean bikes, clean vibes</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>Upcoming Runs</h2>
+        <div style="height: 20px"></div>
+        <div class="table-wrapper">
+          <table class="table" aria-label="Upcoming events">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Event</th>
+                <th>Meet Area</th>
+                <th>KSU</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="eventsTableBody">
+              <tr>
+                <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 40px;">
+                  Checking for scheduled rides...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div class="panel" style="margin-top:14px;">
-        <h2 class="h2">How to Post an Event</h2>
-        <p class="muted" style="margin:0;">
-          Use a consistent format: <strong>Date • Meet • KSU • Route • Skill Level • Rules</strong>.
-          Keep exact meetup addresses inside the private chat if you want.
+      <!-- Quick Instructions Panel -->
+      <div class="panel" style="margin-top: 40px;">
+        <h2>Event Standards</h2>
+        <div style="height: 12px"></div>
+        <p class="text-muted" style="line-height: 1.8;">
+          All riders must adhere to the core safety directives. Make sure your motorcycle is in running order before meetup. KSU (Kick Stands Up) is sharp — arriving 15 minutes early to fuel up is highly recommended. Route coordinates and safety leaders are designated in the GroupMe channels before departure.
         </p>
       </div>
+    </section>
+  </main>
+
+  <!-- 🔥 Footer -->
+  <footer class="footer">
+    <div class="container footerRow">
+      <span>© <span id="year"></span> Streetz X Safe ATL</span>
+      <span class="muted">Bypassing the noise. Ride Safe. Rep the movement.</span>
     </div>
-  </section>
-</main>
+  </footer>
 
-<footer class="footer">
-  <div class="container footerRow">
-    <span>© <span id="year"></span> Streetz Ain’t Safe ATL</span>
-    <span class="muted">No drama. No confusion. Ride.</span>
-  </div>
-</footer>
+  <script src="script.js"></script>
+  <script>
+    // Fetch and populate schedule from events.json
+    async function loadEvents() {
+      const tbody = document.getElementById("eventsTableBody");
+      try {
+        const response = await fetch("events.json");
+        if (!response.ok) throw new Error("Failed to load events.json");
+        const events = await response.json();
+        
+        if (events.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 40px;">
+                No upcoming events scheduled. Check back soon.
+              </td>
+            </tr>
+          `;
+          return;
+        }
 
-<script src="script.js"></script>
+        tbody.innerHTML = ""; // Clear loader
+        
+        events.forEach(evt => {
+          const row = document.createElement("tr");
+          
+          row.innerHTML = `
+            <td style="font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; color: var(--text-color);">${evt.date}</td>
+            <td style="font-weight: 700;">${evt.event}</td>
+            <td>${evt.meetArea}</td>
+            <td style="font-family: var(--font-heading); font-weight: 700;">${evt.ksu}</td>
+            <td class="text-muted" style="font-size: 13px;">${evt.notes}</td>
+          `;
+          
+          tbody.appendChild(row);
+        });
+      } catch (err) {
+        console.error("Error loading events:", err);
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" style="text-align: center; color: var(--accent-red); padding: 40px;">
+              Failed to load event database. View console for details.
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    // Initialize layout
+    document.addEventListener("DOMContentLoaded", loadEvents);
+  </script>
 </body>
 </html>
