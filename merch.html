@@ -94,8 +94,8 @@
           // Determine checkout URL link behavior (handling placeholders vs real variant IDs)
           const getCheckoutLink = (varId) => {
             if (varId.startsWith("REPLACE_WITH")) {
-              // Fallback to store products link or root if they haven't filled it in yet
-              return `https://streetz-aint-safe.myshopify.com/products/${product.id}`;
+              // Fallback to store root if they haven't filled it in yet to avoid 404
+              return `https://streetz-aint-safe.myshopify.com`;
             }
             return `https://streetz-aint-safe.myshopify.com/cart/${varId}:1`;
           };
@@ -171,7 +171,7 @@
       // Update checkout URL
       const buyBtn = document.getElementById(`buy-btn-${productId}`);
       if (variantId.startsWith("REPLACE_WITH")) {
-        buyBtn.href = `https://streetz-aint-safe.myshopify.com/products/${productId}`;
+        buyBtn.href = `https://streetz-aint-safe.myshopify.com`;
       } else {
         buyBtn.href = `https://streetz-aint-safe.myshopify.com/cart/${variantId}:1`;
       }
