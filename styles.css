@@ -319,7 +319,7 @@ textarea.input {
   width: 100%;
   height: 100%;
   object-fit: cover; /* covers the entire screen, no side bars */
-  filter: blur(6px) brightness(0.75); /* lighter blur and brighter output */
+  filter: blur(6px) brightness(0.95); /* lighter blur and bright output */
   z-index: 1;
   transform: scale(1.05); /* slightly scale up to prevent blurred borders showing */
 }
