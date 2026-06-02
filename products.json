@@ -4,7 +4,7 @@
     "name": "LONG SLEEVE HOODIES",
     "subname": "High-Visibility Reflective Design",
     "priceDisplay": "$65.00",
-    "image": "assets/merch-hoodie.png",
+    "image": "assets/merch-hoodie.jpg",
     "description": "Stay visible, stay safe. High-quality reflective graphics on premium heavyweight fabric. Designed for riders who refuse to blend in.",
     "variants": [
       { "size": "XS", "price": 65.00, "variantId": "48455754186967" },
@@ -23,7 +23,7 @@
     "name": "SHORT SLEEVE T-SHIRTS",
     "subname": "High-Visibility Reflective Design",
     "priceDisplay": "$35.00 - $40.00",
-    "image": "assets/merch-tee.png",
+    "image": "assets/merch-tee.jpg",
     "description": "High-visibility reflective print on premium soft cotton t-shirt. Ideal for layering or warm weather rides.",
     "variants": [
       { "size": "XS", "price": 35.00, "variantId": "48455728300247" },
