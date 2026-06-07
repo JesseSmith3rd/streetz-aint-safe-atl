@@ -33,7 +33,6 @@
       <a href="merch.html">Shop</a>
       <a href="events.html">Events</a>
       <a href="join.html" class="active">Join</a>
-      <a href="contact.html">Contact</a>
       <a href="#" id="cartToggleNav">Cart (<span id="cartCount">0</span>)</a>
     </nav>
     <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
@@ -83,79 +82,43 @@
       </div>
 
       <!-- Interactive Coalition Onboarding Engine -->
-      <div class="panel" id="onboardingContainer" style="margin-top: 40px; padding: 40px;">
-        <h2 style="margin-bottom: 8px;">Coalition Onboarding</h2>
-        <p class="text-muted" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px;">Initialize operator status and synchronize your machine</p>
+      <div class="panel" id="onboardingContainer" style="margin-top: 40px; padding: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <h2 style="margin-bottom: 8px; text-align: center;">Coalition Onboarding</h2>
+        <p class="text-muted" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px; text-align: center;">Initialize operator status and synchronize your machine</p>
         
-        <div class="crew-grid">
-          <!-- Left Column: Form -->
-          <form id="coalitionForm" style="display: flex; flex-direction: column; gap: 20px;">
-            <div class="form-field">
-              <label for="crewName">Name / Alias</label>
-              <input type="text" id="crewName" class="input" required placeholder="ENTER OPERATOR ALIAS" />
-            </div>
-            
-            <div class="form-field">
-              <label for="crewMachine">My Machine</label>
-              <input type="text" id="crewMachine" class="input" required placeholder="e.g., 2008 Kawasaki ZX-14R // Twin-Turbo BRZ" />
-            </div>
-            
-            <div class="form-field">
-              <label for="crewSector">My Sector</label>
-              <input type="text" id="crewSector" class="input" required placeholder="e.g., Atlanta, GA" />
-            </div>
-            
-            <div class="form-field">
-              <label for="crewDiscipline">My Discipline</label>
-              <select id="crewDiscipline" class="input" required>
-                <option value="" disabled selected>SELECT DISCIPLINE</option>
-                <option value="Street Carving">Street Carving</option>
-                <option value="Track Days">Track Days</option>
-                <option value="Mechanical Builds">Mechanical Builds</option>
-                <option value="Drag Strip">Drag Strip</option>
-                <option value="Stunt & Control">Stunt & Control</option>
-              </select>
-            </div>
-            
-            <button type="submit" class="btn primary full" style="margin-top: 10px; border-color: var(--text-color);">
-              SUBMIT TO COALITION
-            </button>
-          </form>
-          
-          <!-- Right Column: Live Dossier Preview -->
-          <div class="dossier-card" id="dossierCard">
-            <div class="dossier-header">
-              <span class="dossier-title">SXS Operator Dossier</span>
-              <span class="dossier-status" id="dossierStatus">PENDING</span>
-            </div>
-            <div class="dossier-meta">
-              <div class="dossier-row">
-                <span class="dossier-label">Operator Alias</span>
-                <span class="dossier-value empty-field" id="previewName">[Awaiting Data]</span>
-              </div>
-              <div class="dossier-row">
-                <span class="dossier-label">Primary Machine</span>
-                <span class="dossier-value empty-field" id="previewMachine">[Awaiting Data]</span>
-              </div>
-              <div class="dossier-row">
-                <span class="dossier-label">Active Sector</span>
-                <span class="dossier-value empty-field" id="previewSector">[Awaiting Data]</span>
-              </div>
-              <div class="dossier-row">
-                <span class="dossier-label">Primary Discipline</span>
-                <span class="dossier-value empty-field" id="previewDiscipline">[Awaiting Data]</span>
-              </div>
-            </div>
-            
-            <div class="dossier-quote-box">
-              <span class="dossier-label">Generated Introduction</span>
-              <div style="height: 6px"></div>
-              <p class="dossier-quote" id="previewQuote">
-                “What’s good — I’m [Name]. I ride/drive a [Machine]. I handle [Discipline] in the [Sector] sector. I’m trying to catch runs, stay consistent, and rep Streetz X Safe.”
-              </p>
-            </div>
+        <!-- Center-Aligned Form -->
+        <form id="coalitionForm" style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="form-field">
+            <label for="crewName">Name / Alias</label>
+            <input type="text" id="crewName" class="input" required placeholder="ENTER OPERATOR ALIAS" />
           </div>
-        </div>
+          
+          <div class="form-field">
+            <label for="crewMachine">My Machine</label>
+            <input type="text" id="crewMachine" class="input" required placeholder="e.g., 2008 Kawasaki ZX-14R // Twin-Turbo BRZ" />
+          </div>
+          
+          <div class="form-field">
+            <label for="crewSector">My Sector</label>
+            <input type="text" id="crewSector" class="input" required placeholder="e.g., Atlanta, GA" />
+          </div>
+          
+          <div class="form-field">
+            <label for="crewDiscipline">My Discipline</label>
+            <select id="crewDiscipline" class="input" required>
+              <option value="" disabled selected>SELECT DISCIPLINE</option>
+              <option value="Street Carving">Street Carving</option>
+              <option value="Track Days">Track Days</option>
+              <option value="Mechanical Builds">Mechanical Builds</option>
+              <option value="Drag Strip">Drag Strip</option>
+              <option value="Stunt & Control">Stunt & Control</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="btn primary full" style="margin-top: 10px; border-color: var(--text-color);">
+            SUBMIT TO COALITION
+          </button>
+        </form>
       </div>
 
   <script>
@@ -166,72 +129,7 @@
       const crewDiscipline = document.getElementById('crewDiscipline');
       const coalitionForm = document.getElementById('coalitionForm');
       const onboardingContainer = document.getElementById('onboardingContainer');
-      
-      const previewName = document.getElementById('previewName');
-      const previewMachine = document.getElementById('previewMachine');
-      const previewSector = document.getElementById('previewSector');
-      const previewDiscipline = document.getElementById('previewDiscipline');
-      const previewQuote = document.getElementById('previewQuote');
-      const dossierStatus = document.getElementById('dossierStatus');
 
-      function updatePreview() {
-        const nameVal = crewName.value.trim();
-        const machineVal = crewMachine.value.trim();
-        const sectorVal = crewSector.value.trim();
-        const disciplineVal = crewDiscipline.value;
-        
-        // Update Name
-        if (nameVal) {
-          previewName.textContent = nameVal;
-          previewName.classList.remove('empty-field');
-        } else {
-          previewName.textContent = '[Awaiting Data]';
-          previewName.classList.add('empty-field');
-        }
-        
-        // Update Machine
-        if (machineVal) {
-          previewMachine.textContent = machineVal;
-          previewMachine.classList.remove('empty-field');
-        } else {
-          previewMachine.textContent = '[Awaiting Data]';
-          previewMachine.classList.add('empty-field');
-        }
-        
-        // Update Sector
-        if (sectorVal) {
-          previewSector.textContent = sectorVal;
-          previewSector.classList.remove('empty-field');
-        } else {
-          previewSector.textContent = '[Awaiting Data]';
-          previewSector.classList.add('empty-field');
-        }
-        
-        // Update Discipline
-        if (disciplineVal) {
-          previewDiscipline.textContent = disciplineVal;
-          previewDiscipline.classList.remove('empty-field');
-        } else {
-          previewDiscipline.textContent = '[Awaiting Data]';
-          previewDiscipline.classList.add('empty-field');
-        }
-        
-        // Update Quote String
-        const dispName = nameVal || '[Name]';
-        const dispMachine = machineVal || '[Machine]';
-        const dispSector = sectorVal || '[Sector]';
-        const dispDiscipline = disciplineVal || '[Discipline]';
-        
-        previewQuote.textContent = `“What’s good — I’m ${dispName}. I ride/drive a ${dispMachine}. I handle ${dispDiscipline} in the ${dispSector} sector. I’m trying to catch runs, stay consistent, and rep Streetz X Safe.”`;
-      }
-      
-      // Bind input events for live preview updates
-      crewName.addEventListener('input', updatePreview);
-      crewMachine.addEventListener('input', updatePreview);
-      crewSector.addEventListener('input', updatePreview);
-      crewDiscipline.addEventListener('change', updatePreview);
-      
-      // Form Submission
       coalitionForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
@@ -239,7 +137,7 @@
         const machineVal = crewMachine.value.trim();
         const sectorVal = crewSector.value.trim();
         const disciplineVal = crewDiscipline.value;
-        const generatedIntro = previewQuote.textContent;
+        const generatedIntro = `“What’s good — I’m ${nameVal}. I ride/drive a ${machineVal}. I handle ${disciplineVal} in the ${sectorVal} sector. I’m trying to catch runs, stay consistent, and rep Streetz X Safe.”`;
         
         // Securely log payload to console (mock API handler handoff)
         console.log("SXS Operator Dossier Submitted:", {
@@ -253,36 +151,12 @@
         
         // Transition to Success State
         onboardingContainer.innerHTML = `
-          <div class="coalition-success">
+          <div class="coalition-success" style="min-height: 200px;">
             <div class="success-icon-wrap" style="color: #1abc9c; border-color: #1abc9c; background-color: rgba(26,188,156,0.1);">✓</div>
-            <h2 style="margin-bottom: 12px; font-family: var(--font-heading); font-size: 20px;">Dossier Transmitted</h2>
-            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px; max-width: 400px; line-height: 1.6;">
+            <h2 style="margin-bottom: 12px; font-family: var(--font-heading); font-size: 20px; text-align: center;">Dossier Transmitted</h2>
+            <p style="color: var(--text-muted); font-size: 14px; max-width: 400px; line-height: 1.6; margin: 0 auto; text-align: center;">
               Welcome to the Crew, Operator. Hold the line.
             </p>
-            <div class="dossier-card" style="width: 100%; max-width: 450px; text-align: left;">
-              <div class="dossier-header">
-                <span class="dossier-title">SXS Operator Dossier</span>
-                <span class="dossier-status" style="color:#1abc9c; border-color:#1abc9c">ACTIVE</span>
-              </div>
-              <div class="dossier-meta">
-                <div class="dossier-row">
-                  <span class="dossier-label">Operator Alias</span>
-                  <span class="dossier-value">${nameVal}</span>
-                </div>
-                <div class="dossier-row">
-                  <span class="dossier-label">Primary Machine</span>
-                  <span class="dossier-value">${machineVal}</span>
-                </div>
-                <div class="dossier-row">
-                  <span class="dossier-label">Active Sector</span>
-                  <span class="dossier-value">${sectorVal}</span>
-                </div>
-                <div class="dossier-row">
-                  <span class="dossier-label">Primary Discipline</span>
-                  <span class="dossier-value">${disciplineVal}</span>
-                </div>
-              </div>
-            </div>
           </div>
         `;
       });
