@@ -34,6 +34,7 @@
       <a href="events.html">Events</a>
       <a href="join.html">Join</a>
       <a href="contact.html">Contact</a>
+      <a href="#" id="cartToggleNav">Cart (<span id="cartCount">0</span>)</a>
     </nav>
     <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
   </header>
@@ -90,17 +91,6 @@
           let defaultIndex = product.variants.findIndex(v => v.size === "M");
           if (defaultIndex === -1) defaultIndex = 0;
           const initialVariant = product.variants[defaultIndex];
-
-          // Determine checkout URL link behavior (handling placeholders vs real variant IDs)
-          const getCheckoutLink = (varId) => {
-            if (varId.startsWith("REPLACE_WITH")) {
-              // Fallback to store root if they haven't filled it in yet to avoid 404
-              return `https://streetz-aint-safe.myshopify.com`;
-            }
-            return `https://streetz-aint-safe.myshopify.com/cart/${varId}:1`;
-          };
-          
-          const defaultCheckoutUrl = getCheckoutLink(initialVariant.variantId);
           
           // Generate size selector buttons
           let sizeSelectorHTML = "";
@@ -136,13 +126,12 @@
               </div>
             </div>
 
-            <a href="${defaultCheckoutUrl}" 
-               target="_blank" 
-               rel="noopener noreferrer" 
+            <button type="button" 
                class="btn primary full" 
-               id="buy-btn-${product.id}">
-              Buy on Shopify
-            </a>
+               id="add-btn-${product.id}"
+               onclick="handleAddToCart('${product.id}')">
+              Add to Cart
+            </button>
           `;
           
           grid.appendChild(card);
@@ -163,17 +152,48 @@
       
       // Get price and variant ID from clicked option
       const newPrice = buttonElement.getAttribute("data-price");
-      const variantId = buttonElement.getAttribute("data-variant-id");
       
       // Update price display
       document.getElementById(`price-${productId}`).textContent = newPrice;
+    }
+
+    // Handle adding items to cart locally
+    function handleAddToCart(productId) {
+      const card = document.getElementById(`product-${productId}`);
+      if (!card) return;
       
-      // Update checkout URL
-      const buyBtn = document.getElementById(`buy-btn-${productId}`);
-      if (variantId.startsWith("REPLACE_WITH")) {
-        buyBtn.href = `https://streetz-aint-safe.myshopify.com`;
+      const name = card.querySelector('h3').textContent;
+      const image = card.querySelector('.product-photo-wrap img').getAttribute('src');
+      const selectedBtn = card.querySelector('.size-option-btn.selected');
+      if (!selectedBtn) return;
+      
+      const size = selectedBtn.textContent;
+      const price = selectedBtn.getAttribute('data-price').replace('$', '');
+      const variantId = selectedBtn.getAttribute('data-variant-id');
+      
+      if (typeof addItemToCart === 'function') {
+        addItemToCart(productId, name, size, price, image, variantId);
+        
+        // Visual button feedback
+        const addBtn = document.getElementById(`add-btn-${productId}`);
+        if (addBtn) {
+          const originalText = addBtn.textContent;
+          addBtn.textContent = "✓ Added!";
+          addBtn.style.backgroundColor = "var(--accent-red)";
+          addBtn.style.color = "var(--text-color)";
+          addBtn.style.borderColor = "var(--accent-red)";
+          addBtn.disabled = true;
+          
+          setTimeout(() => {
+            addBtn.textContent = originalText;
+            addBtn.style.backgroundColor = "";
+            addBtn.style.color = "";
+            addBtn.style.borderColor = "";
+            addBtn.disabled = false;
+          }, 1200);
+        }
       } else {
-        buyBtn.href = `https://streetz-aint-safe.myshopify.com/cart/${variantId}:1`;
+        console.error('addItemToCart is not loaded in script.js');
       }
     }
 
