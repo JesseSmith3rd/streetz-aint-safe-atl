@@ -1262,4 +1262,150 @@ body.drawer-open, body.modal-open {
   .form-field.half {
     margin-bottom: 16px;
   }
+}
+
+/* ==========================================================================
+   THE ASPHALT COALITION / CREW ONBOARDING ENGINE
+   ========================================================================== */
+
+.crew-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  margin-top: 40px;
+}
+
+select.input {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+select.input option {
+  background-color: #0c0c0c;
+  color: var(--text-color);
+}
+
+/* Onboarding Dossier Card */
+.dossier-card {
+  background-color: #0c0c0c;
+  border: 1px solid var(--border-color);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  min-height: 350px;
+}
+.dossier-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+.dossier-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dossier-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.dossier-status {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--accent-red);
+  font-weight: 800;
+  text-transform: uppercase;
+  border: 1px solid var(--accent-red);
+  padding: 2px 8px;
+}
+
+.dossier-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dossier-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dossier-label {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.dossier-value {
+  font-size: 14px;
+  color: var(--text-color);
+  font-weight: 500;
+  min-height: 20px;
+}
+
+.dossier-value.empty-field {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.dossier-quote-box {
+  margin-top: 24px;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 20px;
+}
+
+.dossier-quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  border-left: 2px solid var(--text-color);
+  padding-left: 16px;
+}
+
+/* Success Message Overlay in Onboarding */
+.coalition-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  min-height: 350px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .crew-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
 }

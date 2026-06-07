@@ -42,8 +42,10 @@
   <!-- Main Content -->
   <main class="container">
     <section class="page-title-section">
-      <h1>Join the Crew</h1>
-      <p>If you're solid, respectful, and you ride smart — pull up and rep the movement.</p>
+      <h1>THE ASPHALT COALITION</h1>
+      <p style="margin-top: 16px; line-height: 1.8; font-size: 15px; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; color: var(--text-muted); font-weight: 300;">
+        <strong style="color: var(--text-color); font-weight: 800; letter-spacing: 0.05em;">Streetz X Safe (SXS)</strong> is a cross-discipline collective of riders, drivers, and motorsport competitors bound by a single truth: <span style="color: var(--text-color); font-weight: 500;">The street isn't a controlled environment.</span> The streets <span style="color: var(--text-color); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;">ain't safe</span>, but the crew handles the asphalt with <strong style="color: var(--text-color); font-weight: 800;">precision</strong>.
+      </p>
     </section>
 
     <section class="section" style="padding-top: 0;">
@@ -80,14 +82,212 @@
         </div>
       </div>
 
-      <!-- Intro Panel -->
-      <div class="panel">
-        <h2>Intro Message Template</h2>
-        <div style="height: 12px"></div>
-        <p class="text-muted" style="font-style: italic; font-size: 15px; border-left: 2px solid var(--text-color); padding-left: 16px; line-height: 1.8;">
-          “What’s good — I’m [Name]. I ride a [Bike]. I’m in [Area]. I’m trying to catch rides, stay consistent, and rep Streetz X Safe.”
-        </p>
+      <!-- Interactive Coalition Onboarding Engine -->
+      <div class="panel" id="onboardingContainer" style="margin-top: 40px; padding: 40px;">
+        <h2 style="margin-bottom: 8px;">Coalition Onboarding</h2>
+        <p class="text-muted" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px;">Initialize operator status and synchronize your machine</p>
+        
+        <div class="crew-grid">
+          <!-- Left Column: Form -->
+          <form id="coalitionForm" style="display: flex; flex-direction: column; gap: 20px;">
+            <div class="form-field">
+              <label for="crewName">Name / Alias</label>
+              <input type="text" id="crewName" class="input" required placeholder="ENTER OPERATOR ALIAS" />
+            </div>
+            
+            <div class="form-field">
+              <label for="crewMachine">My Machine</label>
+              <input type="text" id="crewMachine" class="input" required placeholder="e.g., 2008 Kawasaki ZX-14R // Twin-Turbo BRZ" />
+            </div>
+            
+            <div class="form-field">
+              <label for="crewSector">My Sector</label>
+              <input type="text" id="crewSector" class="input" required placeholder="e.g., Atlanta, GA" />
+            </div>
+            
+            <div class="form-field">
+              <label for="crewDiscipline">My Discipline</label>
+              <select id="crewDiscipline" class="input" required>
+                <option value="" disabled selected>SELECT DISCIPLINE</option>
+                <option value="Street Carving">Street Carving</option>
+                <option value="Track Days">Track Days</option>
+                <option value="Mechanical Builds">Mechanical Builds</option>
+                <option value="Drag Strip">Drag Strip</option>
+                <option value="Stunt & Control">Stunt & Control</option>
+              </select>
+            </div>
+            
+            <button type="submit" class="btn primary full" style="margin-top: 10px; border-color: var(--text-color);">
+              SUBMIT TO COALITION
+            </button>
+          </form>
+          
+          <!-- Right Column: Live Dossier Preview -->
+          <div class="dossier-card" id="dossierCard">
+            <div class="dossier-header">
+              <span class="dossier-title">SXS Operator Dossier</span>
+              <span class="dossier-status" id="dossierStatus">PENDING</span>
+            </div>
+            <div class="dossier-meta">
+              <div class="dossier-row">
+                <span class="dossier-label">Operator Alias</span>
+                <span class="dossier-value empty-field" id="previewName">[Awaiting Data]</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Primary Machine</span>
+                <span class="dossier-value empty-field" id="previewMachine">[Awaiting Data]</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Active Sector</span>
+                <span class="dossier-value empty-field" id="previewSector">[Awaiting Data]</span>
+              </div>
+              <div class="dossier-row">
+                <span class="dossier-label">Primary Discipline</span>
+                <span class="dossier-value empty-field" id="previewDiscipline">[Awaiting Data]</span>
+              </div>
+            </div>
+            
+            <div class="dossier-quote-box">
+              <span class="dossier-label">Generated Introduction</span>
+              <div style="height: 6px"></div>
+              <p class="dossier-quote" id="previewQuote">
+                “What’s good — I’m [Name]. I ride/drive a [Machine]. I handle [Discipline] in the [Sector] sector. I’m trying to catch runs, stay consistent, and rep Streetz X Safe.”
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const crewName = document.getElementById('crewName');
+      const crewMachine = document.getElementById('crewMachine');
+      const crewSector = document.getElementById('crewSector');
+      const crewDiscipline = document.getElementById('crewDiscipline');
+      const coalitionForm = document.getElementById('coalitionForm');
+      const onboardingContainer = document.getElementById('onboardingContainer');
+      
+      const previewName = document.getElementById('previewName');
+      const previewMachine = document.getElementById('previewMachine');
+      const previewSector = document.getElementById('previewSector');
+      const previewDiscipline = document.getElementById('previewDiscipline');
+      const previewQuote = document.getElementById('previewQuote');
+      const dossierStatus = document.getElementById('dossierStatus');
+
+      function updatePreview() {
+        const nameVal = crewName.value.trim();
+        const machineVal = crewMachine.value.trim();
+        const sectorVal = crewSector.value.trim();
+        const disciplineVal = crewDiscipline.value;
+        
+        // Update Name
+        if (nameVal) {
+          previewName.textContent = nameVal;
+          previewName.classList.remove('empty-field');
+        } else {
+          previewName.textContent = '[Awaiting Data]';
+          previewName.classList.add('empty-field');
+        }
+        
+        // Update Machine
+        if (machineVal) {
+          previewMachine.textContent = machineVal;
+          previewMachine.classList.remove('empty-field');
+        } else {
+          previewMachine.textContent = '[Awaiting Data]';
+          previewMachine.classList.add('empty-field');
+        }
+        
+        // Update Sector
+        if (sectorVal) {
+          previewSector.textContent = sectorVal;
+          previewSector.classList.remove('empty-field');
+        } else {
+          previewSector.textContent = '[Awaiting Data]';
+          previewSector.classList.add('empty-field');
+        }
+        
+        // Update Discipline
+        if (disciplineVal) {
+          previewDiscipline.textContent = disciplineVal;
+          previewDiscipline.classList.remove('empty-field');
+        } else {
+          previewDiscipline.textContent = '[Awaiting Data]';
+          previewDiscipline.classList.add('empty-field');
+        }
+        
+        // Update Quote String
+        const dispName = nameVal || '[Name]';
+        const dispMachine = machineVal || '[Machine]';
+        const dispSector = sectorVal || '[Sector]';
+        const dispDiscipline = disciplineVal || '[Discipline]';
+        
+        previewQuote.textContent = `“What’s good — I’m ${dispName}. I ride/drive a ${dispMachine}. I handle ${dispDiscipline} in the ${dispSector} sector. I’m trying to catch runs, stay consistent, and rep Streetz X Safe.”`;
+      }
+      
+      // Bind input events for live preview updates
+      crewName.addEventListener('input', updatePreview);
+      crewMachine.addEventListener('input', updatePreview);
+      crewSector.addEventListener('input', updatePreview);
+      crewDiscipline.addEventListener('change', updatePreview);
+      
+      // Form Submission
+      coalitionForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const nameVal = crewName.value.trim();
+        const machineVal = crewMachine.value.trim();
+        const sectorVal = crewSector.value.trim();
+        const disciplineVal = crewDiscipline.value;
+        const generatedIntro = previewQuote.textContent;
+        
+        // Securely log payload to console (mock API handler handoff)
+        console.log("SXS Operator Dossier Submitted:", {
+          operatorName: nameVal,
+          machine: machineVal,
+          sector: sectorVal,
+          discipline: disciplineVal,
+          introduction: generatedIntro,
+          timestamp: new Date().toISOString()
+        });
+        
+        // Transition to Success State
+        onboardingContainer.innerHTML = `
+          <div class="coalition-success">
+            <div class="success-icon-wrap" style="color: #1abc9c; border-color: #1abc9c; background-color: rgba(26,188,156,0.1);">✓</div>
+            <h2 style="margin-bottom: 12px; font-family: var(--font-heading); font-size: 20px;">Dossier Transmitted</h2>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px; max-width: 400px; line-height: 1.6;">
+              Welcome to the Crew, Operator. Hold the line.
+            </p>
+            <div class="dossier-card" style="width: 100%; max-width: 450px; text-align: left;">
+              <div class="dossier-header">
+                <span class="dossier-title">SXS Operator Dossier</span>
+                <span class="dossier-status" style="color:#1abc9c; border-color:#1abc9c">ACTIVE</span>
+              </div>
+              <div class="dossier-meta">
+                <div class="dossier-row">
+                  <span class="dossier-label">Operator Alias</span>
+                  <span class="dossier-value">${nameVal}</span>
+                </div>
+                <div class="dossier-row">
+                  <span class="dossier-label">Primary Machine</span>
+                  <span class="dossier-value">${machineVal}</span>
+                </div>
+                <div class="dossier-row">
+                  <span class="dossier-label">Active Sector</span>
+                  <span class="dossier-value">${sectorVal}</span>
+                </div>
+                <div class="dossier-row">
+                  <span class="dossier-label">Primary Discipline</span>
+                  <span class="dossier-value">${disciplineVal}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    });
+  </script>
     </section>
   </main>
 
