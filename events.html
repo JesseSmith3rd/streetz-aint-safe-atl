@@ -51,25 +51,76 @@
       <div class="panel">
         <h2>Upcoming Runs</h2>
         <div style="height: 20px"></div>
-        <div class="table-wrapper">
-          <table class="table" aria-label="Upcoming events">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Event</th>
-                <th>Meet Area</th>
-                <th>KSU</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody id="eventsTableBody">
-              <tr>
-                <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 40px;">
-                  Checking for scheduled rides...
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="schedule-list" style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Event 1: Ride to Buc-ee's -->
+          <div class="event-card" style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 32px; display: flex; flex-direction: column; gap: 16px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <span class="event-date" style="font-family: var(--font-heading); font-weight: 700; font-size: 11px; letter-spacing: 0.15em; color: var(--accent-red); text-transform: uppercase;">Sat, June 13</span>
+                <h3 style="font-size: 18px; margin-top: 4px; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-color);">Ride to Buc-ee's</h3>
+                <p class="event-host" style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Metro ATL (QT) • KSU 10:00 AM</p>
+              </div>
+            </div>
+            <p class="event-desc" style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+              KSU at 10:00 AM sharp. Route + rules posted in group chat. Fuel up early!
+            </p>
+            <div style="margin-top: 8px;">
+              <a href="#" class="btn primary" style="font-size: 11px; padding: 10px 20px; border-color: var(--text-color);">GET DIRECTIONS / MEET DETAILS</a>
+            </div>
+          </div>
+
+          <!-- Event 2: Summer Takeover -->
+          <div class="event-card" style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 32px; display: flex; flex-direction: column; gap: 16px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <span class="event-date" style="font-family: var(--font-heading); font-weight: 700; font-size: 11px; letter-spacing: 0.15em; color: var(--accent-red); text-transform: uppercase;">July 18</span>
+                <h3 style="font-size: 18px; margin-top: 4px; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-color);">THE ASPHALT COALITION: SUMMER TAKEOVER</h3>
+                <p class="event-host" style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Cycle Gear Store Event — Hosted by Streetz Aint Safe & FastLaneD</p>
+              </div>
+            </div>
+            <p class="event-desc" style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+              The streets meet the track. High-velocity community link-up, machine showcase, and safety awareness alignment. Lock the date, prep your machine, and hold the line.
+            </p>
+            <div style="margin-top: 8px;">
+              <a href="#" class="btn primary" style="font-size: 11px; padding: 10px 20px; border-color: var(--text-color);">GET DIRECTIONS / MEET DETAILS</a>
+            </div>
+          </div>
+
+          <!-- Event 3: Night Run -->
+          <div class="event-card" style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 32px; display: flex; flex-direction: column; gap: 16px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <span class="event-date" style="font-family: var(--font-heading); font-weight: 700; font-size: 11px; letter-spacing: 0.15em; color: var(--accent-red); text-transform: uppercase;">TBD</span>
+                <h3 style="font-size: 18px; margin-top: 4px; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-color);">Night Run</h3>
+                <p class="event-host" style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">Atlanta • KSU TBD</p>
+              </div>
+            </div>
+            <p class="event-desc" style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+              Check group chat for meet coordinates. Steady pace.
+            </p>
+            <div style="margin-top: 8px;">
+              <a href="#" class="btn primary" style="font-size: 11px; padding: 10px 20px; border-color: var(--text-color);">GET DIRECTIONS / MEET DETAILS</a>
+            </div>
+          </div>
+
+          <!-- Event 4: Bike Wash & Link Up -->
+          <div class="event-card" style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 32px; display: flex; flex-direction: column; gap: 16px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <span class="event-date" style="font-family: var(--font-heading); font-weight: 700; font-size: 11px; letter-spacing: 0.15em; color: var(--accent-red); text-transform: uppercase;">TBD</span>
+                <h3 style="font-size: 18px; margin-top: 4px; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-color);">Bike Wash & Link Up</h3>
+                <p class="event-host" style="font-size: 13px; color: var(--text-muted); margin-top: 2px;">TBD</p>
+              </div>
+            </div>
+            <p class="event-desc" style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+              Clean bikes, clean vibes. Post-ride hangout.
+            </p>
+            <div style="margin-top: 8px;">
+              <a href="#" class="btn primary" style="font-size: 11px; padding: 10px 20px; border-color: var(--text-color);">GET DIRECTIONS / MEET DETAILS</a>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -93,55 +144,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    // Fetch and populate schedule from events.json
-    async function loadEvents() {
-      const tbody = document.getElementById("eventsTableBody");
-      try {
-        const response = await fetch("events.json");
-        if (!response.ok) throw new Error("Failed to load events.json");
-        const events = await response.json();
-        
-        if (events.length === 0) {
-          tbody.innerHTML = `
-            <tr>
-              <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 40px;">
-                No upcoming events scheduled. Check back soon.
-              </td>
-            </tr>
-          `;
-          return;
-        }
-
-        tbody.innerHTML = ""; // Clear loader
-        
-        events.forEach(evt => {
-          const row = document.createElement("tr");
-          
-          row.innerHTML = `
-            <td style="font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; color: var(--text-color);">${evt.date}</td>
-            <td style="font-weight: 700;">${evt.event}</td>
-            <td>${evt.meetArea}</td>
-            <td style="font-family: var(--font-heading); font-weight: 700;">${evt.ksu}</td>
-            <td class="text-muted" style="font-size: 13px;">${evt.notes}</td>
-          `;
-          
-          tbody.appendChild(row);
-        });
-      } catch (err) {
-        console.error("Error loading events:", err);
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="5" style="text-align: center; color: var(--accent-red); padding: 40px;">
-              Failed to load event database. View console for details.
-            </td>
-          </tr>
-        `;
-      }
-    }
-
-    // Initialize layout
-    document.addEventListener("DOMContentLoaded", loadEvents);
-  </script>
+  <!-- Static card schedule layout configured -->
 </body>
 </html>
