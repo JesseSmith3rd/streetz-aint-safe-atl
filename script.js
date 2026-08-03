@@ -39,12 +39,120 @@ navLinks.forEach(link => {
 });
 
 /* ==========================================================================
-   LUXURY SHOPPING CART & SECURE CHECKOUT OVERLAY SYSTEM
+   SHOPIFY INTEGRATION & TRUSTED CATALOG MAPPING
    ========================================================================== */
 
-let cartState = JSON.parse(localStorage.getItem('sz_cart') || '[]');
+// Fixed mapping between every selectable size/option and its corresponding Shopify numeric variant ID.
+// Locally stored prices are completely ignored for authoritative checkout calculations.
+const PRODUCT_CATALOG = {
+  "long-sleeve-hoodies-high-visibility-reflective-design": {
+    name: "LONG SLEEVE HOODIES",
+    image: "assets/merch-hoodie.jpg",
+    variants: {
+      "XS": { price: 65.00, variantId: "48455754186967" },
+      "S": { price: 65.00, variantId: "48455754186967" },
+      "M": { price: 65.00, variantId: "48455754186967" },
+      "L": { price: 65.00, variantId: "48455754186967" },
+      "XL": { price: 65.00, variantId: "48455754186967" },
+      "2XL": { price: 65.00, variantId: "48455754186967" },
+      "3XL": { price: 65.00, variantId: "48455754186967" },
+      "4XL": { price: 65.00, variantId: "48455754186967" },
+      "5XL": { price: 65.00, variantId: "48455754186967" }
+    }
+  },
+  "short-sleeve-t-shirts-high-visibility-reflective-design": {
+    name: "SHORT SLEEVE T-SHIRTS",
+    image: "assets/merch-tee.jpg",
+    variants: {
+      "XS": { price: 35.00, variantId: "48455728300247" },
+      "S": { price: 35.00, variantId: "48455728267479" },
+      "M": { price: 35.00, variantId: "48455728234711" },
+      "L": { price: 35.00, variantId: "48455728201943" },
+      "XL": { price: 35.00, variantId: "48455728333015" },
+      "2XL": { price: 35.00, variantId: "48455728398551" },
+      "3XL": { price: 40.00, variantId: "48455728431319" },
+      "4XL": { price: 35.00, variantId: "48455728365783" },
+      "5XL": { price: 40.00, variantId: "48455728464087" }
+    }
+  }
+};
+
+/**
+ * Validates and sanitizes the shopping cart data.
+ * Merges duplicates, ignores localStorage pricing, and enforces quantities 1-10.
+ */
+function validateAndSanitizeCart(rawCart) {
+  if (!Array.isArray(rawCart)) return [];
+  const mergedCart = {};
+
+  for (let i = 0; i < rawCart.length; i++) {
+    const item = rawCart[i];
+    
+    // Reject malformed cart objects
+    if (!item || typeof item !== 'object') continue;
+    
+    const productId = item.id;
+    const size = item.size;
+    
+    // Reject unknown product IDs
+    if (!PRODUCT_CATALOG.hasOwnProperty(productId)) continue;
+    const product = PRODUCT_CATALOG[productId];
+    
+    // Reject unknown variants or sizes
+    if (!product.variants.hasOwnProperty(size)) continue;
+    const variantInfo = product.variants[size];
+    
+    const variantId = variantInfo.variantId;
+    
+    // Parse quantity as base-10 integer
+    let qty = parseInt(item.qty, 10);
+    if (isNaN(qty) || qty < 1) continue;
+    
+    // Merge duplicate entries containing the same variant ID
+    if (mergedCart[variantId]) {
+      mergedCart[variantId].qty += qty;
+    } else {
+      mergedCart[variantId] = {
+        id: productId,
+        name: product.name,
+        size: size,
+        price: variantInfo.price, // ignore local stored prices, rebuild from catalog
+        image: product.image,
+        variantId: variantId,
+        qty: qty
+      };
+    }
+  }
+
+  // Convert merged cart back to array and validate final quantities (1-10)
+  const validCart = [];
+  for (const variantId in mergedCart) {
+    const item = mergedCart[variantId];
+    if (item.qty > 10) {
+      item.qty = 10;
+    }
+    if (item.qty >= 1 && item.qty <= 10) {
+      validCart.push(item);
+    }
+  }
+  
+  return validCart;
+}
+
+/* ==========================================================================
+   CART SYSTEM OPERATIONS
+   ========================================================================== */
+
+let cartState = [];
+try {
+  const raw = JSON.parse(localStorage.getItem('sz_cart') || '[]');
+  cartState = validateAndSanitizeCart(raw);
+} catch (e) {
+  cartState = [];
+}
 
 function saveCart() {
+  cartState = validateAndSanitizeCart(cartState);
   localStorage.setItem('sz_cart', JSON.stringify(cartState));
   renderCart();
 }
@@ -66,12 +174,28 @@ function renderCart() {
   updateCartCountBadge();
   const cartList = document.getElementById('cartItemsList');
   const cartSubtotalEl = document.getElementById('cartSubtotal');
+  const checkoutBtn = document.getElementById('checkoutTriggerBtn');
+  const cartErrorMsg = document.getElementById('cartErrorMessage');
   
+  if (cartErrorMsg) {
+    cartErrorMsg.style.display = 'none';
+    cartErrorMsg.textContent = '';
+  }
+
   if (!cartList) return;
   
   if (cartState.length === 0) {
-    cartList.innerHTML = `<div class="cart-empty-message">Your cart is empty</div>`;
-    cartSubtotalEl.textContent = '$0.00';
+    cartList.innerHTML = '';
+    const emptyMsg = document.createElement('div');
+    emptyMsg.className = 'cart-empty-message';
+    emptyMsg.textContent = 'Your cart is empty';
+    cartList.appendChild(emptyMsg);
+    
+    if (cartSubtotalEl) cartSubtotalEl.textContent = '$0.00';
+    if (checkoutBtn) {
+      checkoutBtn.disabled = true;
+      checkoutBtn.textContent = 'Cart is Empty';
+    }
     return;
   }
   
@@ -84,36 +208,102 @@ function renderCart() {
     
     const itemEl = document.createElement('div');
     itemEl.className = 'cart-item';
-    itemEl.innerHTML = `
-      <img src="${item.image}" alt="${item.name}" class="cart-item-img" onerror="this.src='https://placehold.co/150x150/111/fff?text=merch'" />
-      <div class="cart-item-details">
-        <div>
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-variant">Size: ${item.size}</div>
-        </div>
-        <div class="cart-item-controls">
-          <div class="qty-adjuster">
-            <button type="button" class="qty-btn minus" onclick="adjustItemQty('${item.id}', '${item.size}', -1)">-</button>
-            <span class="qty-val">${item.qty}</span>
-            <button type="button" class="qty-btn plus" onclick="adjustItemQty('${item.id}', '${item.size}', 1)">+</button>
-          </div>
-          <button type="button" class="cart-item-remove" onclick="removeCartItem('${item.id}', '${item.size}')">Remove</button>
-        </div>
-      </div>
-      <div class="cart-item-price">$${itemTotal.toFixed(2)}</div>
-    `;
+    
+    // Image element programmatically
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = item.name;
+    img.className = 'cart-item-img';
+    img.addEventListener('error', () => {
+      img.src = 'https://placehold.co/150x150/111/fff?text=merch';
+    });
+    itemEl.appendChild(img);
+    
+    // Details wrapper
+    const details = document.createElement('div');
+    details.className = 'cart-item-details';
+    
+    const nameWrap = document.createElement('div');
+    const nameEl = document.createElement('div');
+    nameEl.className = 'cart-item-name';
+    nameEl.textContent = item.name;
+    nameWrap.appendChild(nameEl);
+    
+    const variantEl = document.createElement('div');
+    variantEl.className = 'cart-item-variant';
+    variantEl.textContent = `Size: ${item.size}`;
+    nameWrap.appendChild(variantEl);
+    details.appendChild(nameWrap);
+    
+    // Controls row
+    const controls = document.createElement('div');
+    controls.className = 'cart-item-controls';
+    
+    const qtyAdjuster = document.createElement('div');
+    qtyAdjuster.className = 'qty-adjuster';
+    
+    const minusBtn = document.createElement('button');
+    minusBtn.type = 'button';
+    minusBtn.className = 'qty-btn minus';
+    minusBtn.textContent = '-';
+    minusBtn.addEventListener('click', () => {
+      adjustItemQty(item.id, item.size, -1);
+    });
+    qtyAdjuster.appendChild(minusBtn);
+    
+    const qtyVal = document.createElement('span');
+    qtyVal.className = 'qty-val';
+    qtyVal.textContent = item.qty;
+    qtyAdjuster.appendChild(qtyVal);
+    
+    const plusBtn = document.createElement('button');
+    plusBtn.type = 'button';
+    plusBtn.className = 'qty-btn plus';
+    plusBtn.textContent = '+';
+    plusBtn.addEventListener('click', () => {
+      adjustItemQty(item.id, item.size, 1);
+    });
+    qtyAdjuster.appendChild(plusBtn);
+    controls.appendChild(qtyAdjuster);
+    
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'cart-item-remove';
+    removeBtn.textContent = 'Remove';
+    removeBtn.addEventListener('click', () => {
+      removeCartItem(item.id, item.size);
+    });
+    controls.appendChild(removeBtn);
+    details.appendChild(controls);
+    
+    itemEl.appendChild(details);
+    
+    // Price column
+    const priceEl = document.createElement('div');
+    priceEl.className = 'cart-item-price';
+    priceEl.textContent = `$${itemTotal.toFixed(2)}`;
+    itemEl.appendChild(priceEl);
+    
     cartList.appendChild(itemEl);
   });
   
-  cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+  if (cartSubtotalEl) cartSubtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+  if (checkoutBtn) {
+    checkoutBtn.disabled = false;
+    checkoutBtn.textContent = 'Proceed to Secure Checkout';
+  }
 }
 
 function adjustItemQty(productId, size, delta) {
   const itemIndex = cartState.findIndex(item => item.id === productId && item.size === size);
   if (itemIndex > -1) {
-    cartState[itemIndex].qty += delta;
-    if (cartState[itemIndex].qty <= 0) {
+    const newQty = cartState[itemIndex].qty + delta;
+    if (newQty <= 0) {
       cartState.splice(itemIndex, 1);
+    } else if (newQty > 10) {
+      cartState[itemIndex].qty = 10;
+    } else {
+      cartState[itemIndex].qty = newQty;
     }
     saveCart();
   }
@@ -128,17 +318,26 @@ function removeCartItem(productId, size) {
 }
 
 function addItemToCart(productId, name, size, price, image, variantId) {
+  // Validate input parameters against the trusted catalog before adding
+  if (!PRODUCT_CATALOG.hasOwnProperty(productId)) return;
+  const product = PRODUCT_CATALOG[productId];
+  if (!product.variants.hasOwnProperty(size)) return;
+  
+  const catalogVariant = product.variants[size];
   const existingItemIndex = cartState.findIndex(item => item.id === productId && item.size === size);
+  
   if (existingItemIndex > -1) {
-    cartState[existingItemIndex].qty += 1;
+    let newQty = cartState[existingItemIndex].qty + 1;
+    if (newQty > 10) newQty = 10;
+    cartState[existingItemIndex].qty = newQty;
   } else {
     cartState.push({
       id: productId,
-      name: name,
+      name: product.name,
       size: size,
-      price: parseFloat(price),
-      image: image,
-      variantId: variantId,
+      price: catalogVariant.price,
+      image: product.image,
+      variantId: catalogVariant.variantId,
       qty: 1
     });
   }
@@ -172,127 +371,85 @@ function closeCartDrawer() {
   }
 }
 
-function openCheckoutModal() {
-  if (cartState.length === 0) {
-    alert('Your cart is empty.');
-    return;
+/* ==========================================================================
+   SECURE SHOPIFY REDIRECT CHECKOUT FLOW
+   ========================================================================== */
+
+/**
+ * Builds a Shopify cart permalink and redirects the user.
+ * Implements rigorous cart sanitization, quantity boundaries, and security policies.
+ */
+function initiateShopifyCheckout() {
+  const checkoutBtn = document.getElementById('checkoutTriggerBtn');
+  const cartErrorMsg = document.getElementById('cartErrorMessage');
+  
+  if (cartErrorMsg) {
+    cartErrorMsg.style.display = 'none';
+    cartErrorMsg.textContent = '';
   }
-  
-  closeCartDrawer();
-  
-  const modal = document.getElementById('checkoutModal');
-  const backdrop = document.getElementById('checkoutBackdrop');
-  if (modal && backdrop) {
-    // Populate Order Summary
-    const summaryItems = document.getElementById('checkoutSummaryItems');
-    const subtotalEl = document.getElementById('checkoutSubtotal');
-    const totalEl = document.getElementById('checkoutTotal');
-    
-    if (summaryItems && subtotalEl && totalEl) {
-      summaryItems.innerHTML = '';
-      let subtotal = 0;
-      
-      cartState.forEach(item => {
-        const itemTotal = item.price * item.qty;
-        subtotal += itemTotal;
-        
-        const summaryEl = document.createElement('div');
-        summaryEl.className = 'checkout-summary-item';
-        summaryEl.innerHTML = `
-          <span>${item.name} (x${item.qty}) [Size: ${item.size}]</span>
-          <span>$${itemTotal.toFixed(2)}</span>
-        `;
-        summaryItems.appendChild(summaryEl);
-      });
-      
-      subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
-      totalEl.textContent = `$${subtotal.toFixed(2)}`;
+
+  if (!checkoutBtn) return;
+
+  // 1. Confirm cart is non-empty array and validate against approved mappings
+  let validatedCart = [];
+  try {
+    validatedCart = validateAndSanitizeCart(cartState);
+  } catch (e) {
+    validatedCart = [];
+  }
+
+  if (!Array.isArray(validatedCart) || validatedCart.length === 0) {
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = 'Cart is Empty';
+    if (cartErrorMsg) {
+      cartErrorMsg.textContent = 'Unable to process checkout. Your cart is empty or contains invalid items.';
+      cartErrorMsg.style.display = 'block';
     }
-    
-    // Reset inputs, loaders, success screens
-    const loader = document.getElementById('checkoutLoaderScreen');
-    const success = document.getElementById('checkoutSuccessScreen');
-    if (loader) loader.classList.remove('active');
-    if (success) success.classList.remove('active');
-    
-    const form = document.getElementById('checkoutForm');
-    if (form) form.reset();
-    
-    modal.classList.add('active');
-    backdrop.classList.add('active');
-    document.body.classList.add('modal-open');
-  }
-}
-
-function closeCheckoutModal() {
-  const modal = document.getElementById('checkoutModal');
-  const backdrop = document.getElementById('checkoutBackdrop');
-  if (modal && backdrop) {
-    modal.classList.remove('active');
-    backdrop.classList.remove('active');
-    document.body.classList.remove('modal-open');
-  }
-}
-
-// Format credit card number inputs (add spaces every 4 characters)
-function formatCardNumber(e) {
-  let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-  let parts = [];
-  for (let i = 0; i < value.length; i += 4) {
-    parts.push(value.substring(i, i + 4));
-  }
-  e.target.value = parts.join(' ');
-}
-
-// Format expiry date MM/YY input
-function formatExpiryDate(e) {
-  let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-  if (value.length > 2) {
-    e.target.value = value.substring(0, 2) + ' / ' + value.substring(2, 4);
-  } else {
-    e.target.value = value;
-  }
-}
-
-// Process Secure Payment Simulation
-function processPayment(event) {
-  if (event) event.preventDefault();
-  
-  const loader = document.getElementById('checkoutLoaderScreen');
-  const success = document.getElementById('checkoutSuccessScreen');
-  if (!loader || !success) return;
-  
-  // Show secure loader spinner
-  loader.classList.add('active');
-  
-  setTimeout(() => {
-    // Hide loader, show success screen
-    loader.classList.remove('active');
-    success.classList.add('active');
-    
-    // Clear shopping cart state on complete
-    cartState = [];
-    saveCart();
-  }, 1800);
-}
-
-// PayPal checkout simulator click action
-function triggerPaypalPayment() {
-  // Simple validation check: ensure information is filled out if requested, or proceed with quick simulation
-  const emailVal = document.getElementById('checkoutEmail').value;
-  const nameVal = document.getElementById('checkoutName').value;
-  const addressVal = document.getElementById('checkoutAddress').value;
-  
-  if (!emailVal || !nameVal || !addressVal) {
-    alert('Please fill out your Customer Information first before paying.');
     return;
   }
-  
-  processPayment(null);
+
+  // Disable button immediately to prevent duplicate clicks and change text
+  checkoutBtn.disabled = true;
+  checkoutBtn.textContent = 'Opening secure Shopify checkout…';
+
+  try {
+    // 2. Build the Shopify Cart URL using numeric variant IDs and validated quantities only
+    const itemsPath = validatedCart.map(item => {
+      const numericVariantId = item.variantId;
+      // Reject non-numeric variant IDs
+      if (!/^\d+$/.test(numericVariantId)) {
+        throw new Error('Invalid variant ID mapping');
+      }
+      
+      const qty = parseInt(item.qty, 10);
+      if (isNaN(qty) || qty < 1 || qty > 10) {
+        throw new Error('Invalid quantity');
+      }
+      
+      return `${numericVariantId}:${qty}`;
+    }).join(',');
+
+    if (!itemsPath) {
+      throw new Error('No items to construct path');
+    }
+
+    const shopifyCartUrl = `https://streetz-aint-safe.myshopify.com/cart/${itemsPath}`;
+
+    // 3. Perform redirect securely using location.assign
+    window.location.assign(shopifyCartUrl);
+  } catch (err) {
+    // If URL construction fails: do not redirect, display generic message, and restore state
+    checkoutBtn.disabled = false;
+    checkoutBtn.textContent = 'Proceed to Secure Checkout';
+    if (cartErrorMsg) {
+      cartErrorMsg.textContent = 'Unable to process checkout. Please try again.';
+      cartErrorMsg.style.display = 'block';
+    }
+  }
 }
 
 // Inject necessary HTML containers dynamically on load
-function injectCartAndCheckoutMarkup() {
+function injectCartMarkup() {
   if (document.getElementById('cartDrawer')) return; // Check if already injected
   
   const drawerContainer = document.createElement('div');
@@ -312,209 +469,21 @@ function injectCartAndCheckoutMarkup() {
           <span class="cart-subtotal-value" id="cartSubtotal">$0.00</span>
         </div>
         <p class="cart-disclaimer">Shipping & taxes calculated at checkout</p>
+        <p class="cart-disclaimer" id="cartErrorMessage" style="color: var(--accent-red); font-size: 11px; margin-top: 8px; display: none;" role="status" aria-live="polite"></p>
         <button class="btn primary full" id="checkoutTriggerBtn">Proceed to Secure Checkout</button>
       </div>
     </div>
   `;
   document.body.appendChild(drawerContainer);
   
-  const checkoutContainer = document.createElement('div');
-  checkoutContainer.innerHTML = `
-    <!-- Checkout Backdrop -->
-    <div id="checkoutBackdrop" class="modal-backdrop"></div>
-    <!-- Checkout Modal -->
-    <div id="checkoutModal" class="checkout-modal">
-      <div class="checkout-header">
-        <h2>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-top:-2px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-          Secure Checkout
-        </h2>
-        <button class="checkout-close-btn" id="checkoutCloseBtn">✕</button>
-      </div>
-      
-      <div class="checkout-body">
-        <!-- Order Summary -->
-        <div class="checkout-summary-box">
-          <div class="checkout-summary-title">Order Summary</div>
-          <div class="checkout-summary-items" id="checkoutSummaryItems"></div>
-          <div class="checkout-summary-totals">
-            <div class="checkout-summary-row">
-              <span>Subtotal</span>
-              <span id="checkoutSubtotal">$0.00</span>
-            </div>
-            <div class="checkout-summary-row">
-              <span>Shipping</span>
-              <span style="color:#1abc9c">FREE</span>
-            </div>
-            <div class="checkout-summary-row grand-total">
-              <span>Total (USD)</span>
-              <span id="checkoutTotal">$0.00</span>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Billing/Shipping Form -->
-        <form id="checkoutForm">
-          <div class="checkout-form-section">
-            <div class="checkout-section-title">Customer Information</div>
-            <div class="form-field">
-              <label for="checkoutEmail">Email Address</label>
-              <input type="email" id="checkoutEmail" class="input" required placeholder="email@example.com" />
-            </div>
-            <div class="form-field">
-              <label for="checkoutName">Full Name</label>
-              <input type="text" id="checkoutName" class="input" required placeholder="John Doe" />
-            </div>
-            <div class="form-field">
-              <label for="checkoutAddress">Shipping Address</label>
-              <input type="text" id="checkoutAddress" class="input" required placeholder="123 Main St, Atlanta, GA 30303" />
-            </div>
-          </div>
-          
-          <!-- Payment Method -->
-          <div class="checkout-form-section">
-            <div class="checkout-section-title">Payment Method</div>
-            <div class="payment-tabs">
-              <button type="button" class="payment-tab-btn active" id="tabStripe">Credit Card</button>
-              <button type="button" class="payment-tab-btn" id="tabPaypal">PayPal</button>
-            </div>
-            
-            <!-- Credit Card Tab (Stripe style) -->
-            <div class="payment-tab-content active" id="contentStripe">
-              <div class="stripe-input-container">
-                <div class="stripe-card-number-wrapper">
-                  <span class="stripe-card-icon">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                  </span>
-                  <input type="text" id="stripeCardNumber" required placeholder="4242 4242 4242 4242" maxlength="19" />
-                </div>
-                <div class="stripe-details-row">
-                  <input type="text" id="stripeCardExpiry" required placeholder="MM / YY" maxlength="7" />
-                  <input type="text" id="stripeCardCvc" required placeholder="CVC" maxlength="4" />
-                  <input type="text" id="stripeCardZip" required placeholder="ZIP" maxlength="5" />
-                </div>
-              </div>
-            </div>
-            
-            <!-- PayPal Tab -->
-            <div class="payment-tab-content" id="contentPaypal">
-              <div class="paypal-button-mock" id="paypalButtonMock">
-                Pay with <span>Pay</span><span>Pal</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Submit Button -->
-          <button type="submit" class="btn primary full" id="submitPaymentBtn">Pay Now</button>
-        </form>
-        
-        <!-- Trust Badges -->
-        <div class="checkout-trust-badges">
-          <div class="checkout-trust-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:2px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-            SSL Encrypted
-          </div>
-          <div class="checkout-trust-badge">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right:2px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            100% Secure Checkout
-          </div>
-        </div>
-      </div>
-      
-      <!-- Loading overlay screen -->
-      <div class="checkout-loader-screen" id="checkoutLoaderScreen">
-        <div class="spinner"></div>
-        <div style="font-family:var(--font-heading); font-size:11px; letter-spacing:0.15em; text-transform:uppercase;">Processing Secure Payment...</div>
-      </div>
-      
-      <!-- Success screen -->
-      <div class="checkout-success-screen" id="checkoutSuccessScreen">
-        <div class="success-icon-wrap">✓</div>
-        <h3 class="checkout-success-title">Order Confirmed</h3>
-        <p class="checkout-success-text">All transactions are secure and encrypted. Thank you for supporting the movement. Your simulated order has been placed.</p>
-        <button class="btn primary" id="successCloseBtn" style="min-width: 150px;">Return to Shop</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(checkoutContainer);
-  
-  // Set up listeners for the injected DOM elements
+  // Set up listeners for the injected DOM elements programmatically
   document.getElementById('cartCloseBtn').addEventListener('click', closeCartDrawer);
   document.getElementById('cartBackdrop').addEventListener('click', closeCartDrawer);
-  
-  document.getElementById('checkoutCloseBtn').addEventListener('click', closeCheckoutModal);
-  document.getElementById('checkoutBackdrop').addEventListener('click', closeCheckoutModal);
-  document.getElementById('checkoutTriggerBtn').addEventListener('click', openCheckoutModal);
-  
-  const checkoutForm = document.getElementById('checkoutForm');
-  checkoutForm.addEventListener('submit', processPayment);
-  
-  // Format Card input
-  const ccInput = document.getElementById('stripeCardNumber');
-  ccInput.addEventListener('input', formatCardNumber);
-  
-  // Format Expiry input
-  const expInput = document.getElementById('stripeCardExpiry');
-  expInput.addEventListener('input', formatExpiryDate);
-  
-  // Format numeric inputs for Zip and CVC
-  const cvcInput = document.getElementById('stripeCardCvc');
-  cvcInput.addEventListener('input', (e) => {
-    e.target.value = e.target.value.replace(/[^0-9]/gi, '');
-  });
-  const zipInput = document.getElementById('stripeCardZip');
-  zipInput.addEventListener('input', (e) => {
-    e.target.value = e.target.value.replace(/[^0-9]/gi, '');
-  });
-  
-  // Tab Switching
-  const tabStripe = document.getElementById('tabStripe');
-  const tabPaypal = document.getElementById('tabPaypal');
-  const contentStripe = document.getElementById('contentStripe');
-  const contentPaypal = document.getElementById('contentPaypal');
-  
-  tabStripe.addEventListener('click', () => {
-    tabStripe.classList.add('active');
-    tabPaypal.classList.remove('active');
-    contentStripe.classList.add('active');
-    contentPaypal.classList.remove('active');
-    
-    // Enable Stripe validations
-    document.getElementById('stripeCardNumber').required = true;
-    document.getElementById('stripeCardExpiry').required = true;
-    document.getElementById('stripeCardCvc').required = true;
-    document.getElementById('stripeCardZip').required = true;
-  });
-  
-  tabPaypal.addEventListener('click', () => {
-    tabPaypal.classList.add('active');
-    tabStripe.classList.remove('active');
-    contentPaypal.classList.add('active');
-    contentStripe.classList.remove('active');
-    
-    // Disable Stripe validations
-    document.getElementById('stripeCardNumber').required = false;
-    document.getElementById('stripeCardExpiry').required = false;
-    document.getElementById('stripeCardCvc').required = false;
-    document.getElementById('stripeCardZip').required = false;
-  });
-  
-  // PayPal mock button trigger
-  document.getElementById('paypalButtonMock').addEventListener('click', triggerPaypalPayment);
-  
-  // Success page Return to Shop Close trigger
-  document.getElementById('successCloseBtn').addEventListener('click', () => {
-    closeCheckoutModal();
-    // Redirect or update UI
-    if (window.location.pathname.indexOf('merch.html') === -1) {
-      window.location.href = 'merch.html';
-    }
-  });
+  document.getElementById('checkoutTriggerBtn').addEventListener('click', initiateShopifyCheckout);
 }
 
 // Global Cart Nav Link Bindings
 function bindCartNavLinks() {
-  // The nav cart link can be clicked on any page
   const cartNavLinks = document.querySelectorAll('#cartToggleNav');
   cartNavLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -525,13 +494,52 @@ function bindCartNavLinks() {
 }
 
 function initCartSystem() {
-  injectCartAndCheckoutMarkup();
+  injectCartMarkup();
   renderCart();
   bindCartNavLinks();
 }
 
+/* ==========================================================================
+   SAFE LANDING PAGE NEWSLETTER FORM
+   ========================================================================== */
+
+function initNewsletterForm() {
+  const form = document.getElementById("dropNotificationForm");
+  const emailInput = document.getElementById("dropEmail");
+  const message = document.getElementById("dropFormMessage");
+
+  if (!form || !emailInput || !message) {
+    return;
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const email = emailInput.value.trim();
+
+    if (email.length > 254 || !emailInput.checkValidity()) {
+      message.textContent = "Please enter a valid email address.";
+      emailInput.focus();
+      return;
+    }
+
+    // Do NOT log email address or save locally (Rule 19)
+
+    // Inform user that form was validated locally but not transmitted (Rule 20)
+    message.textContent =
+      "Thanks! Email signup is not connected yet. Your email address was validated locally but not transmitted. Please follow Instagram for current updates.";
+
+    form.reset();
+  });
+}
+
+// Bootstrapping
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initCartSystem);
+  document.addEventListener('DOMContentLoaded', () => {
+    initCartSystem();
+    initNewsletterForm();
+  });
 } else {
   initCartSystem();
+  initNewsletterForm();
 }

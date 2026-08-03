@@ -71,11 +71,11 @@
             <h3>Join Links</h3>
           </div>
           
-          <a class="btn primary full" href="https://groupme.com/join_group/99993469/IJteHsw5" target="_blank" rel="noreferrer">
+          <a class="btn primary full" href="https://groupme.com/join_group/99993469/IJteHsw5" target="_blank" rel="noopener noreferrer">
             Join GroupMe Chat
           </a>
           
-          <a class="btn secondary full" href="https://www.instagram.com/streetzaintsafeatl" target="_blank" rel="noreferrer">
+          <a class="btn secondary full" href="https://www.instagram.com/streetzaintsafeatl" target="_blank" rel="noopener noreferrer">
             Follow Instagram
           </a>
         </div>
@@ -90,17 +90,17 @@
         <form id="coalitionForm" style="display: flex; flex-direction: column; gap: 20px;">
           <div class="form-field">
             <label for="crewName">Name / Alias</label>
-            <input type="text" id="crewName" class="input" required placeholder="ENTER OPERATOR ALIAS" />
+            <input type="text" id="crewName" class="input" required placeholder="ENTER OPERATOR ALIAS" maxlength="50" />
           </div>
           
           <div class="form-field">
             <label for="crewMachine">My Machine</label>
-            <input type="text" id="crewMachine" class="input" required placeholder="e.g., 2008 Kawasaki ZX-14R // Twin-Turbo BRZ" />
+            <input type="text" id="crewMachine" class="input" required placeholder="e.g., 2008 Kawasaki ZX-14R // Twin-Turbo BRZ" maxlength="100" />
           </div>
           
           <div class="form-field">
             <label for="crewSector">My Sector</label>
-            <input type="text" id="crewSector" class="input" required placeholder="e.g., Atlanta, GA" />
+            <input type="text" id="crewSector" class="input" required placeholder="e.g., Atlanta, GA" maxlength="100" />
           </div>
           
           <div class="form-field">
@@ -121,47 +121,7 @@
         </form>
       </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const crewName = document.getElementById('crewName');
-      const crewMachine = document.getElementById('crewMachine');
-      const crewSector = document.getElementById('crewSector');
-      const crewDiscipline = document.getElementById('crewDiscipline');
-      const coalitionForm = document.getElementById('coalitionForm');
-      const onboardingContainer = document.getElementById('onboardingContainer');
-
-      coalitionForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const nameVal = crewName.value.trim();
-        const machineVal = crewMachine.value.trim();
-        const sectorVal = crewSector.value.trim();
-        const disciplineVal = crewDiscipline.value;
-        const generatedIntro = `“What’s good — I’m ${nameVal}. I ride/drive a ${machineVal}. I handle ${disciplineVal} in the ${sectorVal} sector. I’m trying to catch runs, stay consistent, and rep Streetz X Safe.”`;
-        
-        // Securely log payload to console (mock API handler handoff)
-        console.log("SXS Operator Dossier Submitted:", {
-          operatorName: nameVal,
-          machine: machineVal,
-          sector: sectorVal,
-          discipline: disciplineVal,
-          introduction: generatedIntro,
-          timestamp: new Date().toISOString()
-        });
-        
-        // Transition to Success State
-        onboardingContainer.innerHTML = `
-          <div class="coalition-success" style="min-height: 200px;">
-            <div class="success-icon-wrap" style="color: #1abc9c; border-color: #1abc9c; background-color: rgba(26,188,156,0.1);">✓</div>
-            <h2 style="margin-bottom: 12px; font-family: var(--font-heading); font-size: 20px; text-align: center;">Dossier Transmitted</h2>
-            <p style="color: var(--text-muted); font-size: 14px; max-width: 400px; line-height: 1.6; margin: 0 auto; text-align: center;">
-              Welcome to the Crew, Operator. Hold the line.
-            </p>
-          </div>
-        `;
-      });
-    });
-  </script>
+  <script src="join.js"></script>
     </section>
   </main>
 

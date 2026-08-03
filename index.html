@@ -69,10 +69,23 @@
       <!-- Drop Notifications Email Form -->
       <div class="gateFormWrap" style="margin-top: 48px; width: 100%; max-width: 400px;">
         <h3 style="font-size: 11px; letter-spacing: 0.1em; margin-bottom: 12px; text-align: center; color: var(--text-muted);">Get updates on new drops</h3>
-        <form class="gateForm" onsubmit="alert('Subscribed! Stay safe on the road.'); this.reset(); return false;">
-          <input type="email" placeholder="ENTER YOUR EMAIL" class="input" required style="background: rgba(0,0,0,0.6);" />
+        <form class="gateForm" id="dropNotificationForm" novalidate>
+          <input
+            type="email"
+            id="dropEmail"
+            name="email"
+            placeholder="ENTER YOUR EMAIL"
+            class="input"
+            required
+            maxlength="254"
+            autocomplete="email"
+            inputmode="email"
+            aria-describedby="dropFormMessage"
+            style="background: rgba(0,0,0,0.6);"
+          />
           <button type="submit" class="btn primary" style="border: 1px solid #fff;">JOIN</button>
         </form>
+        <p id="dropFormMessage" role="status" aria-live="polite"></p>
       </div>
     </div>
   </div>
