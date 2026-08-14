@@ -25,18 +25,26 @@ if (toggle && nav) {
   });
 }
 
-// Active Nav Link Highlighter (using pathname comparison)
+// Active Nav Link Highlighter (using normalized pathname comparison)
 const currentFile = window.location.pathname.split("/").pop() || "index.html";
 const navLinks = document.querySelectorAll(".nav a");
 
 navLinks.forEach(link => {
   const href = link.getAttribute("href");
-  if (href === currentFile) {
+  if (!href) return;
+  const hrefClean = href.replace(/^\//, '').replace(/\.html$/, '');
+  const currentClean = currentFile.replace(/\.html$/, '');
+  
+  if (hrefClean === currentClean || (currentClean === "" && hrefClean === "index")) {
     link.classList.add("active");
   } else {
-    link.classList.remove("active");
+    // Only remove active if it's not a cart toggle button
+    if (href !== "#") {
+      link.classList.remove("active");
+    }
   }
 });
+
 
 /* ==========================================================================
    SHOPIFY INTEGRATION & TRUSTED CATALOG MAPPING
@@ -533,13 +541,101 @@ function initNewsletterForm() {
   });
 }
 
+// Render Community Preview on the Homepage
+function initCommunityPreview() {
+  const previewGrid = document.getElementById('communityPreviewGrid');
+  if (!previewGrid) return;
+
+  const data = Array.isArray(window.StreetzCommunityData)
+    ? window.StreetzCommunityData
+    : [];
+
+  // Filter and limit to 6 featured photos
+  const featuredPhotos = data
+    .filter(photo => {
+      return photo &&
+        photo.featured === true &&
+        typeof photo.id === 'string' && photo.id.trim() !== '' &&
+        typeof photo.image === 'string' && photo.image.trim() !== '' &&
+        typeof photo.alt === 'string' && photo.alt.trim() !== '';
+    })
+    .slice(0, 6);
+
+  previewGrid.innerHTML = '';
+
+  if (featuredPhotos.length === 0) {
+    const parentSection = previewGrid.closest('.community-preview');
+    if (parentSection) parentSection.style.display = 'none';
+    return;
+  }
+
+  featuredPhotos.forEach(photo => {
+    // Create card container that links to community.html
+    const card = document.createElement('a');
+    card.href = 'community.html';
+    card.className = 'community-card';
+    card.setAttribute('aria-label', `View in community gallery: ${photo.alt}`);
+
+    // Image wrap
+    const photoWrap = document.createElement('div');
+    photoWrap.className = 'community-photo-wrap';
+
+    const img = document.createElement('img');
+    img.src = photo.image; // Use standard image size only
+    img.alt = photo.alt;
+    img.setAttribute('loading', 'lazy');
+    img.setAttribute('decoding', 'async');
+    
+    photoWrap.appendChild(img);
+    card.appendChild(photoWrap);
+
+    // Optional metadata
+    const details = document.createElement('div');
+    details.className = 'community-card-details';
+    let hasDetails = false;
+
+    if (photo.name && photo.name.trim() !== '') {
+      const nameEl = document.createElement('span');
+      nameEl.className = 'community-card-name';
+      nameEl.textContent = photo.name;
+      details.appendChild(nameEl);
+      hasDetails = true;
+    }
+
+    if (photo.location && photo.location.trim() !== '') {
+      const locEl = document.createElement('span');
+      locEl.className = 'community-card-location';
+      locEl.textContent = photo.location;
+      details.appendChild(locEl);
+      hasDetails = true;
+    }
+
+    if (photo.product && photo.product.trim() !== '') {
+      const prodEl = document.createElement('span');
+      prodEl.className = 'community-card-product';
+      prodEl.textContent = photo.product;
+      details.appendChild(prodEl);
+      hasDetails = true;
+    }
+
+    if (hasDetails) {
+      card.appendChild(details);
+    }
+
+    previewGrid.appendChild(card);
+  });
+}
+
 // Bootstrapping
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initCartSystem();
     initNewsletterForm();
+    initCommunityPreview();
   });
 } else {
   initCartSystem();
   initNewsletterForm();
+  initCommunityPreview();
 }
+

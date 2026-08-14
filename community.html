@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Community • Streetz X Safe ATL</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- 🔥 Announcement Bar -->
+  <div class="announcement">
+    🔥 New Merch Live • High-Visibility Reflective Ride Gear • Streetz Aint Safe ATL
+  </div>
+
+  <!-- Floating Instagram Icon -->
+  <a href="https://www.instagram.com/streetzaintsafeatl" target="_blank" rel="noopener noreferrer" class="igFloat" title="Follow on Instagram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+    </svg>
+  </a>
+
+  <!-- 🔥 Navigation Header -->
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.jpg" alt="Streetz X Safe Logo" />
+      <span>Streetz X Safe</span>
+    </a>
+
+    <nav class="nav">
+      <a href="merch.html">Shop</a>
+      <a href="events.html">Events</a>
+      <a href="community.html" class="active">Community</a>
+      <a href="join.html">Join</a>
+      <a href="#" id="cartToggleNav">Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+    <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    
+    <!-- Hero Section -->
+    <section class="page-title-section">
+      <h1>ONE COMMUNITY.</h1>
+      <h1>ONE FAMILY.</h1>
+      <h1>ONE ROAD.</h1>
+      <p style="margin-top: 16px; font-weight: 700; color: var(--text-color);">
+        Different bikes. Different backgrounds. One family brought together by the road.
+      </p>
+      <p style="margin-top: 16px; line-height: 1.8; max-width: 700px; margin-left: auto; margin-right: auto; text-align: center; color: var(--text-muted);">
+        Streetz X Safe is more than what you wear. It's the people behind the movement. Riders, families, friends, customers, and supporters all make this community what it is. This page is dedicated to you.
+      </p>
+    </section>
+
+    <!-- Community Gallery Section -->
+    <section class="section" style="padding-top: 0;">
+      <div class="panel" style="text-align: center;">
+        <h2>OUR COMMUNITY</h2>
+        <p class="text-muted" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;">Real people. Real support. Real family.</p>
+        
+        <!-- Gallery Grid -->
+        <div class="community-grid" id="communityGrid">
+          <!-- Populated dynamically via community.js -->
+        </div>
+      </div>
+
+      <!-- Family Branding Section -->
+      <div class="family-section">
+        <h2>DIFFERENT ROADS. ONE FAMILY.</h2>
+        <p>
+          Whether you ride, support someone who does, represent the brand, or simply believe in the movement, there's a place for you in the Streetz X Safe family.
+        </p>
+      </div>
+
+      <!-- Get Featured Section -->
+      <div class="featured-cta-section">
+        <h2>WANT TO BE FEATURED?</h2>
+        <p>
+          Representing Streetz X Safe? We want to see you.<br>
+          <span style="display: block; margin-top: 12px; font-size: 13px; color: var(--accent-red); text-transform: uppercase; letter-spacing: 0.05em;">A customer photo submission option is coming soon.</span>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 🔥 Footer -->
+  <footer class="footer">
+    <div class="container footerRow">
+      <span>© <span id="year"></span> Streetz X Safe ATL</span>
+      <span class="muted">Bypassing the noise. Ride Safe. Rep the movement.</span>
+    </div>
+  </footer>
+
+  <!-- Accessible Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div class="lightbox-content">
+      <button id="lightboxClose" class="lightbox-btn lightbox-close" aria-label="Close image viewer">✕</button>
+      <button id="lightboxPrev" class="lightbox-btn lightbox-prev" aria-label="Previous image">◀</button>
+      <div class="lightbox-image-wrap">
+        <div class="lightbox-loader"></div>
+        <img id="lightboxImage" class="lightbox-image" src="" alt="" />
+      </div>
+      <button id="lightboxNext" class="lightbox-btn lightbox-next" aria-label="Next image">▶</button>
+      <div id="lightboxInfo" class="lightbox-info"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="community-data.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="community.js" defer></script>
+</body>
+</html>

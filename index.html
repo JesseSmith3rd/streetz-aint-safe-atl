@@ -32,6 +32,7 @@
     <nav class="nav">
       <a href="merch.html">Shop</a>
       <a href="events.html">Events</a>
+      <a href="community.html">Community</a>
       <a href="join.html">Join</a>
       <a href="#" id="cartToggleNav">Cart (<span id="cartCount">0</span>)</a>
     </nav>
@@ -65,10 +66,29 @@
       
       <!-- Enter Shop Button -->
       <a href="merch.html" class="btn primary" style="min-width: 200px; font-size: 13px;">Enter Shop</a>
+    </div>
+  </div>
 
-      <!-- Drop Notifications Email Form -->
-      <div class="gateFormWrap" style="margin-top: 48px; width: 100%; max-width: 400px;">
-        <h3 style="font-size: 11px; letter-spacing: 0.1em; margin-bottom: 12px; text-align: center; color: var(--text-muted);">Get updates on new drops</h3>
+  <!-- THE STREETZ X SAFE COMMUNITY Preview Section -->
+  <section class="community-preview" aria-labelledby="communityPreviewTitle">
+    <div class="container">
+      <h2 id="communityPreviewTitle">THE STREETZ X SAFE COMMUNITY</h2>
+      <p>More than riders. More than customers. We're family.</p>
+      
+      <!-- Dynamic Preview Grid (Capped at 6) -->
+      <div id="communityPreviewGrid" class="community-preview-grid"></div>
+      
+      <div style="margin-top: 32px;">
+        <a href="community.html" class="btn primary">VIEW THE COMMUNITY →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Drop Notifications Email Form Section -->
+  <section class="section" style="border-top: 1px solid var(--border-color); background-color: #050505; padding: 60px 0;">
+    <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+      <div class="gateFormWrap" style="width: 100%; max-width: 400px;">
+        <h3 style="font-size: 11px; letter-spacing: 0.1em; margin-bottom: 12px; text-align: center; color: var(--text-muted); font-family: var(--font-heading); text-transform: uppercase;">Get updates on new drops</h3>
         <form class="gateForm" id="dropNotificationForm" novalidate>
           <input
             type="email"
@@ -85,11 +105,20 @@
           />
           <button type="submit" class="btn primary" style="border: 1px solid #fff;">JOIN</button>
         </form>
-        <p id="dropFormMessage" role="status" aria-live="polite"></p>
+        <p id="dropFormMessage" role="status" aria-live="polite" style="margin-top: 8px; text-align: center; font-size: 12px;"></p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <script src="script.js"></script>
+  <!-- 🔥 Footer -->
+  <footer class="footer" style="margin-top: 0;">
+    <div class="container footerRow">
+      <span>© <span id="year"></span> Streetz X Safe ATL</span>
+      <span class="muted">Bypassing the noise. Ride Safe. Rep the movement.</span>
+    </div>
+  </footer>
+
+  <script src="community-data.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
