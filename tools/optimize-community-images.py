@@ -22,6 +22,8 @@ source_images = [
     ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787226890142.jpg", "customer-018"),
     ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787226892952.jpg", "customer-019"),
     ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787226895444.jpg", "customer-020"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787227001853.jpg", "customer-021"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787227004436.jpg", "customer-022"),
 ]
 
 output_dir = "c:\\Users\\Jesse\\streetzaintsafe\\images\\community"

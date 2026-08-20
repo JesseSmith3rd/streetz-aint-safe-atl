@@ -238,5 +238,29 @@ window.StreetzCommunityData = Object.freeze([
     instagram: "",
     caption: "",
     featured: true
+  }),
+  Object.freeze({
+    id: "customer-021",
+    image: "images/community/customer-021.webp",
+    imageLarge: "images/community/customer-021-large.webp",
+    alt: "Back view of person wearing black Streetz Aint Safe circular logo hoodie",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz Aint Safe Hoodie",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-022",
+    image: "images/community/customer-022.webp",
+    imageLarge: "images/community/customer-022-large.webp",
+    alt: "Two men standing together at the event booth wearing Streetz X Safe hoodie and t-shirt",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Hoodie & Tee",
+    instagram: "",
+    caption: "",
+    featured: true
   })
 ]);
