@@ -2,11 +2,11 @@ import os
 from PIL import Image, ImageOps
 
 source_images = [
-    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\03685bdb-a707-412b-af04-3bc8d96ea1f1\\media__1786733286467.jpg", "customer-001"),
-    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\03685bdb-a707-412b-af04-3bc8d96ea1f1\\media__1786733286496.jpg", "customer-002"),
-    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\03685bdb-a707-412b-af04-3bc8d96ea1f1\\media__1786733286670.jpg", "customer-003"),
-    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\03685bdb-a707-412b-af04-3bc8d96ea1f1\\media__1786733286718.jpg", "customer-004"),
-    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\03685bdb-a707-412b-af04-3bc8d96ea1f1\\media__1786733286736.jpg", "customer-005"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\ca7baee8-db1f-48c7-9396-1bb09e595fc8\\.user_uploaded\\media_1787221492602.jpg", "customer-001"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\ca7baee8-db1f-48c7-9396-1bb09e595fc8\\.user_uploaded\\media_1787221492703.jpg", "customer-002"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\ca7baee8-db1f-48c7-9396-1bb09e595fc8\\.user_uploaded\\media_1787221492759.jpg", "customer-003"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\ca7baee8-db1f-48c7-9396-1bb09e595fc8\\.user_uploaded\\media_1787221492804.jpg", "customer-004"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\ca7baee8-db1f-48c7-9396-1bb09e595fc8\\.user_uploaded\\media_1787221492863.jpg", "customer-005"),
 ]
 
 output_dir = "c:\\Users\\Jesse\\streetzaintsafe\\images\\community"
