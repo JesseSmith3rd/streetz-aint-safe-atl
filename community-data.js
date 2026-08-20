@@ -178,5 +178,65 @@ window.StreetzCommunityData = Object.freeze([
     instagram: "",
     caption: "",
     featured: true
+  }),
+  Object.freeze({
+    id: "customer-016",
+    image: "images/community/customer-016.webp",
+    imageLarge: "images/community/customer-016-large.webp",
+    alt: "Back view of person wearing black Streetz Aint Safe circular logo graphic t-shirt",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz Aint Safe Graphic Tee",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-017",
+    image: "images/community/customer-017.webp",
+    imageLarge: "images/community/customer-017-large.webp",
+    alt: "Man holding packaged Streetz X Safe merchandise at the event booth",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Packaged Tee",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-018",
+    image: "images/community/customer-018.webp",
+    imageLarge: "images/community/customer-018-large.webp",
+    alt: "Rider in checkered jersey holding packaged Streetz X Safe merchandise in front of face",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Packaged Tee",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-019",
+    image: "images/community/customer-019.webp",
+    imageLarge: "images/community/customer-019-large.webp",
+    alt: "Person wearing black Streetz X Safe hoodie and riding boots throwing hand signs",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Hoodie",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-020",
+    image: "images/community/customer-020.webp",
+    imageLarge: "images/community/customer-020-large.webp",
+    alt: "Full body shot of rider wearing black Streetz X Safe hoodie and motorcycle boots",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Hoodie",
+    instagram: "",
+    caption: "",
+    featured: true
   })
 ]);
