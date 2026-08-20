@@ -58,5 +58,65 @@ window.StreetzCommunityData = Object.freeze([
     instagram: "",
     caption: "",
     featured: true
+  }),
+  Object.freeze({
+    id: "customer-006",
+    image: "images/community/customer-006.webp",
+    imageLarge: "images/community/customer-006-large.webp",
+    alt: "Man wearing black Streetz X Safe logo t-shirt and sunglasses standing under event tent with hanging hoodie",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Logo Tee / Hoodie",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-007",
+    image: "images/community/customer-007.webp",
+    imageLarge: "images/community/customer-007-large.webp",
+    alt: "Two men under event tent showcasing black Streetz X Safe hoodie and t-shirt with thumbs up",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Hoodie & Tee",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-008",
+    image: "images/community/customer-008.webp",
+    imageLarge: "images/community/customer-008-large.webp",
+    alt: "Two men standing together outdoors holding up and representing the Streetz X Safe t-shirt",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Tee",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-009",
+    image: "images/community/customer-009.webp",
+    imageLarge: "images/community/customer-009-large.webp",
+    alt: "Two supporters displaying Streetz X Safe hoodie and logo t-shirt with hand signs and thumbs up",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Hoodie & Tee",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-010",
+    image: "images/community/customer-010.webp",
+    imageLarge: "images/community/customer-010-large.webp",
+    alt: "Rider in Streetz X Safe gear leaning over custom carbon fiber and purple Yamaha sport motorcycle",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Official Ride Gear / Yamaha Superbike",
+    instagram: "",
+    caption: "",
+    featured: true
   })
 ]);

@@ -7,6 +7,11 @@ source_images = [
     ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\ca7baee8-db1f-48c7-9396-1bb09e595fc8\\.user_uploaded\\media_1787221492759.jpg", "customer-003"),
     ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\ca7baee8-db1f-48c7-9396-1bb09e595fc8\\.user_uploaded\\media_1787221492804.jpg", "customer-004"),
     ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\ca7baee8-db1f-48c7-9396-1bb09e595fc8\\.user_uploaded\\media_1787221492863.jpg", "customer-005"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787226353415.jpg", "customer-006"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787226357541.jpg", "customer-007"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787226368599.jpg", "customer-008"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787226378184.jpg", "customer-009"),
+    ("C:\\Users\\Jesse\\.gemini\\antigravity-ide\\brain\\76546312-fe6c-4e91-a0b2-5056beba2baf\\.user_uploaded\\media_1787226381325.jpg", "customer-010"),
 ]
 
 output_dir = "c:\\Users\\Jesse\\streetzaintsafe\\images\\community"
