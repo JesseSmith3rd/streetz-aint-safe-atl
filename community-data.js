@@ -27,7 +27,7 @@ window.StreetzCommunityData = Object.freeze([
     id: "customer-003",
     image: "images/community/customer-003.webp",
     imageLarge: "images/community/customer-003-large.webp",
-    alt: "Person holding a packaged Streetz X Safe t-shirt in front of their face",
+    alt: "A smiling girl and a man wearing a black Atlanta Braves cap standing under a red tent, with the girl holding a packaged Streetz X Safe t-shirt",
     name: "",
     location: "Cycle Gear Atlanta",
     product: "Streetz X Safe Packaged Tee",
