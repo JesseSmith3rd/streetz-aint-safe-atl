@@ -118,5 +118,65 @@ window.StreetzCommunityData = Object.freeze([
     instagram: "",
     caption: "",
     featured: true
+  }),
+  Object.freeze({
+    id: "customer-011",
+    image: "images/community/customer-011.webp",
+    imageLarge: "images/community/customer-011-large.webp",
+    alt: "Two custom Yamaha sport motorcycles side-by-side with purple, carbon fiber, and neon yellow details",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Official Ride Gear / Yamaha Superbikes",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-012",
+    image: "images/community/customer-012.webp",
+    imageLarge: "images/community/customer-012-large.webp",
+    alt: "Two men doing a handclasp at the event while holding packaged Streetz X Safe merchandise",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Packaged Tee",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-013",
+    image: "images/community/customer-013.webp",
+    imageLarge: "images/community/customer-013-large.webp",
+    alt: "Woman and man standing together under event tent displaying packaged Streetz X Safe t-shirt",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Packaged Tee",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-014",
+    image: "images/community/customer-014.webp",
+    imageLarge: "images/community/customer-014-large.webp",
+    alt: "Woman sitting on custom purple and carbon fiber Yamaha sport motorcycle making peace signs",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Official Ride Gear / Yamaha Superbike",
+    instagram: "",
+    caption: "",
+    featured: true
+  }),
+  Object.freeze({
+    id: "customer-015",
+    image: "images/community/customer-015.webp",
+    imageLarge: "images/community/customer-015-large.webp",
+    alt: "Three men representing at the Streetz X Safe event booth showcasing packaged gear",
+    name: "",
+    location: "Cycle Gear Atlanta",
+    product: "Streetz X Safe Packaged Gear",
+    instagram: "",
+    caption: "",
+    featured: true
   })
 ]);
